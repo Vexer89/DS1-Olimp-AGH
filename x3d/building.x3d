@@ -5,66 +5,66 @@
 <Scene>
 
     <!-- ====================================== -->
-    <!-- KONSTRUKCJA ŚCIAN BUDYNKU Z OTWOREM -->
+    <!-- KONSTRUKCJA ŚCIAN BUDYNKU -->
     <!-- ====================================== -->
 
     <!-- Długa ściana przednia -->
-    <Transform translation="0 21 5.95">
+    <Transform translation="0 22.4 5.95">
         <Shape>
             <Appearance>
                 <Material diffuseColor="0.78 0.77 0.73"/>
             </Appearance>
-            <Box size="24 42 0.1"/>
+            <Box size="24 44.8 0.1"/>
         </Shape>
     </Transform>
 
     <!-- Długa ściana tylna -->
-    <Transform translation="0 21 -5.95">
+    <Transform translation="0 22.4 -5.95">
         <Shape>
             <Appearance>
                 <Material diffuseColor="0.78 0.77 0.73"/>
             </Appearance>
-            <Box size="24 42 0.1"/>
+            <Box size="24 44.8 0.1"/>
         </Shape>
     </Transform>
 
     <!-- Krótsza ściana prawa -->
-    <Transform translation="11.95 21 0">
+    <Transform translation="11.95 22.4 0">
         <Shape>
             <Appearance>
                 <Material diffuseColor="0.78 0.77 0.73"/>
             </Appearance>
-            <Box size="0.1 42 12"/>
+            <Box size="0.1 44.8 12"/>
         </Shape>
     </Transform>
 
     <!-- Krótsza ściana lewa - strona dodatniego Z -->
-    <Transform translation="-11.95 21 3.625">
+    <Transform translation="-11.95 22.4 3.625">
         <Shape>
             <Appearance>
                 <Material diffuseColor="0.78 0.77 0.73"/>
             </Appearance>
-            <Box size="0.1 42 4.75"/>
+            <Box size="0.1 44.8 4.75"/>
         </Shape>
     </Transform>
 
     <!-- Krótsza ściana lewa - strona ujemnego Z -->
-    <Transform translation="-11.95 21 -3.625">
+    <Transform translation="-11.95 22.4 -3.625">
         <Shape>
             <Appearance>
                 <Material diffuseColor="0.78 0.77 0.73"/>
             </Appearance>
-            <Box size="0.1 42 4.75"/>
+            <Box size="0.1 44.8 4.75"/>
         </Shape>
     </Transform>
 
     <!-- Ściana nad wejściem -->
-    <Transform translation="-11.95 22.15 0">
+    <Transform translation="-11.95 23.55 0">
         <Shape>
             <Appearance>
                 <Material diffuseColor="0.78 0.77 0.73"/>
             </Appearance>
-            <Box size="0.1 39.7 2.5"/>
+            <Box size="0.1 42.5 2.5"/>
         </Shape>
     </Transform>
 
@@ -207,7 +207,7 @@
 
 
     <!-- ====================================== -->
-    <!-- PIERWSZA DŁUGA ELEWACJA - 15 KONDYGNACJI -->
+    <!-- PIERWSZA DŁUGA ELEWACJA - 16 KONDYGNACJI -->
     <!-- ====================================== -->
 
     <Transform translation="0 0.1 0">
@@ -270,9 +270,14 @@
         <Group USE="FLOOR_MODULE"/>
     </Transform>
 
+    <!-- DODANA 16. KONDYGNACJA -->
+    <Transform translation="0 42.1 0">
+        <Group USE="FLOOR_MODULE"/>
+    </Transform>
+
 
     <!-- ====================================== -->
-    <!-- DRUGA DŁUGA ELEWACJA - IDENTYCZNA -->
+    <!-- DRUGA DŁUGA ELEWACJA - 16 KONDYGNACJI -->
     <!-- ====================================== -->
 
     <Transform rotation="0 1 0 3.14159">
@@ -337,8 +342,15 @@
             <Group USE="FLOOR_MODULE"/>
         </Transform>
 
+        <!-- DODANA 16. KONDYGNACJA -->
+        <Transform translation="0 42.1 0">
+            <Group USE="FLOOR_MODULE"/>
+        </Transform>
+
     </Transform>
 
+
+   
 
     <!-- ====================================== -->
     <!-- MODUŁ BALKONU -->
@@ -346,6 +358,7 @@
 
     <Group DEF="BALCONY_MODULE">
       <Transform translation="0 2.8 0">
+
         <!-- Drzwi balkonowe -->
         <Transform translation="-12.08 1.65 0">
             <Shape>
@@ -425,65 +438,70 @@
                 <Box size="2.1 1.1 0.12"/>
             </Shape>
         </Transform>
+
       </Transform>
     </Group>
 
 
     <!-- ====================================== -->
-    <!-- BALKONY NAD WEJŚCIEM - 14 KONDYGNACJI -->
+    <!-- BALKONY NAD WEJŚCIEM -->
     <!-- ====================================== -->
 
-        <Transform translation="0 2.8 0">
-            <Group USE="BALCONY_MODULE"/>
-        </Transform>
+    <Transform translation="0 2.8 0">
+        <Group USE="BALCONY_MODULE"/>
+    </Transform>
 
-        <Transform translation="0 5.6 0">
-            <Group USE="BALCONY_MODULE"/>
-        </Transform>
+    <Transform translation="0 5.6 0">
+        <Group USE="BALCONY_MODULE"/>
+    </Transform>
 
-        <Transform translation="0 8.4 0">
-            <Group USE="BALCONY_MODULE"/>
-        </Transform>
+    <Transform translation="0 8.4 0">
+        <Group USE="BALCONY_MODULE"/>
+    </Transform>
 
-        <Transform translation="0 11.2 0">
-            <Group USE="BALCONY_MODULE"/>
-        </Transform>
+    <Transform translation="0 11.2 0">
+        <Group USE="BALCONY_MODULE"/>
+    </Transform>
 
-        <Transform translation="0 14 0">
-            <Group USE="BALCONY_MODULE"/>
-        </Transform>
+    <Transform translation="0 14 0">
+        <Group USE="BALCONY_MODULE"/>
+    </Transform>
 
-        <Transform translation="0 16.8 0">
-            <Group USE="BALCONY_MODULE"/>
-        </Transform>
+    <Transform translation="0 16.8 0">
+        <Group USE="BALCONY_MODULE"/>
+    </Transform>
 
-        <Transform translation="0 19.6 0">
-            <Group USE="BALCONY_MODULE"/>
-        </Transform>
+    <Transform translation="0 19.6 0">
+        <Group USE="BALCONY_MODULE"/>
+    </Transform>
 
-        <Transform translation="0 22.4 0">
-            <Group USE="BALCONY_MODULE"/>
-        </Transform>
+    <Transform translation="0 22.4 0">
+        <Group USE="BALCONY_MODULE"/>
+    </Transform>
 
-        <Transform translation="0 25.2 0">
-            <Group USE="BALCONY_MODULE"/>
-        </Transform>
+    <Transform translation="0 25.2 0">
+        <Group USE="BALCONY_MODULE"/>
+    </Transform>
 
-        <Transform translation="0 28 0">
-            <Group USE="BALCONY_MODULE"/>
-        </Transform>
+    <Transform translation="0 28 0">
+        <Group USE="BALCONY_MODULE"/>
+    </Transform>
 
-        <Transform translation="0 30.8 0">
-            <Group USE="BALCONY_MODULE"/>
-        </Transform>
+    <Transform translation="0 30.8 0">
+        <Group USE="BALCONY_MODULE"/>
+    </Transform>
 
-        <Transform translation="0 33.6 0">
-            <Group USE="BALCONY_MODULE"/>
-        </Transform>
+    <Transform translation="0 33.6 0">
+        <Group USE="BALCONY_MODULE"/>
+    </Transform>
 
-        <Transform translation="0 36.4 0">
-            <Group USE="BALCONY_MODULE"/>
-        </Transform>
+    <Transform translation="0 36.4 0">
+        <Group USE="BALCONY_MODULE"/>
+    </Transform>
+
+    <Transform translation="0 39.2 0">
+        <Group USE="BALCONY_MODULE"/>
+    </Transform>
 
 
     <!-- ====================================== -->
@@ -580,13 +598,13 @@
     <!-- PIONOWY TRZON KOMUNIKACYJNY -->
     <!-- ====================================== -->
 
-    <Transform translation="12.8 21 0">
+    <Transform translation="12.8 22.4 0">
 
         <Shape>
             <Appearance>
                 <Material diffuseColor="0.72 0.71 0.68"/>
             </Appearance>
-            <Box size="1.6 42 12"/>
+            <Box size="1.6 44.8 12"/>
         </Shape>
 
         <!-- Pionowe przeszklenie -->
@@ -595,7 +613,7 @@
                 <Appearance>
                     <Material diffuseColor="0.18 0.26 0.30"/>
                 </Appearance>
-                <Box size="1.1 40 0.15"/>
+                <Box size="1.1 42.8 0.15"/>
             </Shape>
         </Transform>
 
@@ -606,7 +624,7 @@
     <!-- DACH -->
     <!-- ====================================== -->
 
-    <Transform translation="0 42.15 0">
+    <Transform translation="0 44.95 0">
         <Shape>
             <Appearance>
                 <Material diffuseColor="0.58 0.57 0.53"/>
