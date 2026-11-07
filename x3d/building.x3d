@@ -1,0 +1,633 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<X3D profile="Immersive" version="3.3"
+     xmlns="http://www.web3d.org/specifications/x3d-namespace">
+
+<Scene>
+
+    <!-- ====================================== -->
+    <!-- KONSTRUKCJA ŚCIAN BUDYNKU Z OTWOREM -->
+    <!-- ====================================== -->
+
+    <!-- Długa ściana przednia -->
+    <Transform translation="0 21 5.95">
+        <Shape>
+            <Appearance>
+                <Material diffuseColor="0.78 0.77 0.73"/>
+            </Appearance>
+            <Box size="24 42 0.1"/>
+        </Shape>
+    </Transform>
+
+    <!-- Długa ściana tylna -->
+    <Transform translation="0 21 -5.95">
+        <Shape>
+            <Appearance>
+                <Material diffuseColor="0.78 0.77 0.73"/>
+            </Appearance>
+            <Box size="24 42 0.1"/>
+        </Shape>
+    </Transform>
+
+    <!-- Krótsza ściana prawa -->
+    <Transform translation="11.95 21 0">
+        <Shape>
+            <Appearance>
+                <Material diffuseColor="0.78 0.77 0.73"/>
+            </Appearance>
+            <Box size="0.1 42 12"/>
+        </Shape>
+    </Transform>
+
+    <!-- Krótsza ściana lewa - strona dodatniego Z -->
+    <Transform translation="-11.95 21 3.625">
+        <Shape>
+            <Appearance>
+                <Material diffuseColor="0.78 0.77 0.73"/>
+            </Appearance>
+            <Box size="0.1 42 4.75"/>
+        </Shape>
+    </Transform>
+
+    <!-- Krótsza ściana lewa - strona ujemnego Z -->
+    <Transform translation="-11.95 21 -3.625">
+        <Shape>
+            <Appearance>
+                <Material diffuseColor="0.78 0.77 0.73"/>
+            </Appearance>
+            <Box size="0.1 42 4.75"/>
+        </Shape>
+    </Transform>
+
+    <!-- Ściana nad wejściem -->
+    <Transform translation="-11.95 22.15 0">
+        <Shape>
+            <Appearance>
+                <Material diffuseColor="0.78 0.77 0.73"/>
+            </Appearance>
+            <Box size="0.1 39.7 2.5"/>
+        </Shape>
+    </Transform>
+
+
+    <!-- ====================================== -->
+    <!-- MODUŁ OKNA -->
+    <!-- ====================================== -->
+
+    <Group DEF="WINDOW_UNIT">
+
+        <Shape>
+            <Appearance>
+                <Material diffuseColor="0.35 0.49 0.55"
+                          specularColor="0.3 0.3 0.3"
+                          shininess="0.3"/>
+            </Appearance>
+            <Box size="2.15 1.35 0.12"/>
+        </Shape>
+
+        <!-- Górna rama -->
+        <Transform translation="0 0.72 0.08">
+            <Shape>
+                <Appearance>
+                    <Material diffuseColor="0.92 0.91 0.87"/>
+                </Appearance>
+                <Box size="2.3 0.10 0.18"/>
+            </Shape>
+        </Transform>
+
+        <!-- Dolna rama -->
+        <Transform translation="0 -0.72 0.08">
+            <Shape>
+                <Appearance>
+                    <Material diffuseColor="0.92 0.91 0.87"/>
+                </Appearance>
+                <Box size="2.3 0.10 0.18"/>
+            </Shape>
+        </Transform>
+
+        <!-- Lewa rama -->
+        <Transform translation="-1.12 0 0.08">
+            <Shape>
+                <Appearance>
+                    <Material diffuseColor="0.92 0.91 0.87"/>
+                </Appearance>
+                <Box size="0.10 1.5 0.18"/>
+            </Shape>
+        </Transform>
+
+        <!-- Prawa rama -->
+        <Transform translation="1.12 0 0.08">
+            <Shape>
+                <Appearance>
+                    <Material diffuseColor="0.92 0.91 0.87"/>
+                </Appearance>
+                <Box size="0.10 1.5 0.18"/>
+            </Shape>
+        </Transform>
+
+        <!-- Podział szyby -->
+        <Transform translation="0 0 0.10">
+            <Shape>
+                <Appearance>
+                    <Material diffuseColor="0.85 0.87 0.85"/>
+                </Appearance>
+                <Box size="0.07 1.35 0.18"/>
+            </Shape>
+        </Transform>
+
+    </Group>
+
+
+    <!-- ====================================== -->
+    <!-- MODUŁ KONDYGNACJI -->
+    <!-- ====================================== -->
+
+    <Group DEF="FLOOR_MODULE">
+
+        <!-- Poziomy pas elewacji -->
+        <Transform translation="0 2.65 0">
+            <Shape>
+                <Appearance>
+                    <Material diffuseColor="0.86 0.85 0.81"/>
+                </Appearance>
+                <Box size="24.2 0.22 0.25"/>
+            </Shape>
+        </Transform>
+
+        <!-- Okna - pierwsza długa elewacja -->
+
+        <Transform translation="-9 1.75 6.08">
+            <Group USE="WINDOW_UNIT"/>
+        </Transform>
+
+        <Transform translation="-6 1.75 6.08">
+            <Group USE="WINDOW_UNIT"/>
+        </Transform>
+
+        <Transform translation="-3 1.75 6.08">
+            <Group USE="WINDOW_UNIT"/>
+        </Transform>
+
+        <Transform translation="0 1.75 6.08">
+            <Group USE="WINDOW_UNIT"/>
+        </Transform>
+
+        <Transform translation="3 1.75 6.08">
+            <Group USE="WINDOW_UNIT"/>
+        </Transform>
+
+        <Transform translation="6 1.75 6.08">
+            <Group USE="WINDOW_UNIT"/>
+        </Transform>
+
+        <Transform translation="9 1.75 6.08">
+            <Group USE="WINDOW_UNIT"/>
+        </Transform>
+
+        <!-- Ciemne elementy elewacji -->
+
+        <Transform translation="-10.5 1.75 6.06">
+            <Shape>
+                <Appearance>
+                    <Material diffuseColor="0.34 0.35 0.34"/>
+                </Appearance>
+                <Box size="0.55 2.35 0.16"/>
+            </Shape>
+        </Transform>
+
+        <Transform translation="10.5 1.75 6.06">
+            <Shape>
+                <Appearance>
+                    <Material diffuseColor="0.34 0.35 0.34"/>
+                </Appearance>
+                <Box size="0.55 2.35 0.16"/>
+            </Shape>
+        </Transform>
+
+    </Group>
+
+
+    <!-- ====================================== -->
+    <!-- PIERWSZA DŁUGA ELEWACJA - 15 KONDYGNACJI -->
+    <!-- ====================================== -->
+
+    <Transform translation="0 0.1 0">
+        <Group USE="FLOOR_MODULE"/>
+    </Transform>
+
+    <Transform translation="0 2.9 0">
+        <Group USE="FLOOR_MODULE"/>
+    </Transform>
+
+    <Transform translation="0 5.7 0">
+        <Group USE="FLOOR_MODULE"/>
+    </Transform>
+
+    <Transform translation="0 8.5 0">
+        <Group USE="FLOOR_MODULE"/>
+    </Transform>
+
+    <Transform translation="0 11.3 0">
+        <Group USE="FLOOR_MODULE"/>
+    </Transform>
+
+    <Transform translation="0 14.1 0">
+        <Group USE="FLOOR_MODULE"/>
+    </Transform>
+
+    <Transform translation="0 16.9 0">
+        <Group USE="FLOOR_MODULE"/>
+    </Transform>
+
+    <Transform translation="0 19.7 0">
+        <Group USE="FLOOR_MODULE"/>
+    </Transform>
+
+    <Transform translation="0 22.5 0">
+        <Group USE="FLOOR_MODULE"/>
+    </Transform>
+
+    <Transform translation="0 25.3 0">
+        <Group USE="FLOOR_MODULE"/>
+    </Transform>
+
+    <Transform translation="0 28.1 0">
+        <Group USE="FLOOR_MODULE"/>
+    </Transform>
+
+    <Transform translation="0 30.9 0">
+        <Group USE="FLOOR_MODULE"/>
+    </Transform>
+
+    <Transform translation="0 33.7 0">
+        <Group USE="FLOOR_MODULE"/>
+    </Transform>
+
+    <Transform translation="0 36.5 0">
+        <Group USE="FLOOR_MODULE"/>
+    </Transform>
+
+    <Transform translation="0 39.3 0">
+        <Group USE="FLOOR_MODULE"/>
+    </Transform>
+
+
+    <!-- ====================================== -->
+    <!-- DRUGA DŁUGA ELEWACJA - IDENTYCZNA -->
+    <!-- ====================================== -->
+
+    <Transform rotation="0 1 0 3.14159">
+
+        <Transform translation="0 0.1 0">
+            <Group USE="FLOOR_MODULE"/>
+        </Transform>
+
+        <Transform translation="0 2.9 0">
+            <Group USE="FLOOR_MODULE"/>
+        </Transform>
+
+        <Transform translation="0 5.7 0">
+            <Group USE="FLOOR_MODULE"/>
+        </Transform>
+
+        <Transform translation="0 8.5 0">
+            <Group USE="FLOOR_MODULE"/>
+        </Transform>
+
+        <Transform translation="0 11.3 0">
+            <Group USE="FLOOR_MODULE"/>
+        </Transform>
+
+        <Transform translation="0 14.1 0">
+            <Group USE="FLOOR_MODULE"/>
+        </Transform>
+
+        <Transform translation="0 16.9 0">
+            <Group USE="FLOOR_MODULE"/>
+        </Transform>
+
+        <Transform translation="0 19.7 0">
+            <Group USE="FLOOR_MODULE"/>
+        </Transform>
+
+        <Transform translation="0 22.5 0">
+            <Group USE="FLOOR_MODULE"/>
+        </Transform>
+
+        <Transform translation="0 25.3 0">
+            <Group USE="FLOOR_MODULE"/>
+        </Transform>
+
+        <Transform translation="0 28.1 0">
+            <Group USE="FLOOR_MODULE"/>
+        </Transform>
+
+        <Transform translation="0 30.9 0">
+            <Group USE="FLOOR_MODULE"/>
+        </Transform>
+
+        <Transform translation="0 33.7 0">
+            <Group USE="FLOOR_MODULE"/>
+        </Transform>
+
+        <Transform translation="0 36.5 0">
+            <Group USE="FLOOR_MODULE"/>
+        </Transform>
+
+        <Transform translation="0 39.3 0">
+            <Group USE="FLOOR_MODULE"/>
+        </Transform>
+
+    </Transform>
+
+
+    <!-- ====================================== -->
+    <!-- MODUŁ BALKONU -->
+    <!-- ====================================== -->
+
+    <Group DEF="BALCONY_MODULE">
+      <Transform translation="0 2.8 0">
+        <!-- Drzwi balkonowe -->
+        <Transform translation="-12.08 1.65 0">
+            <Shape>
+                <Appearance>
+                    <Material diffuseColor="0.17 0.27 0.32"/>
+                </Appearance>
+                <Box size="0.12 2.1 2.4"/>
+            </Shape>
+        </Transform>
+
+        <!-- Podział drzwi -->
+        <Transform translation="-12.16 1.65 0">
+            <Shape>
+                <Appearance>
+                    <Material diffuseColor="0.85 0.87 0.85"/>
+                </Appearance>
+                <Box size="0.10 2.1 0.08"/>
+            </Shape>
+        </Transform>
+
+        <!-- Górna rama -->
+        <Transform translation="-12.17 2.72 0">
+            <Shape>
+                <Appearance>
+                    <Material diffuseColor="0.92 0.91 0.87"/>
+                </Appearance>
+                <Box size="0.18 0.10 2.6"/>
+            </Shape>
+        </Transform>
+
+        <!-- Dolna rama -->
+        <Transform translation="-12.17 0.58 0">
+            <Shape>
+                <Appearance>
+                    <Material diffuseColor="0.92 0.91 0.87"/>
+                </Appearance>
+                <Box size="0.18 0.10 2.6"/>
+            </Shape>
+        </Transform>
+
+        <!-- Płyta balkonu -->
+        <Transform translation="-13.15 0.12 0">
+            <Shape>
+                <Appearance>
+                    <Material diffuseColor="0.91 0.90 0.86"/>
+                </Appearance>
+                <Box size="2.25 0.25 3.6"/>
+            </Shape>
+        </Transform>
+
+        <!-- Przednia balustrada -->
+        <Transform translation="-14.22 0.72 0">
+            <Shape>
+                <Appearance>
+                    <Material diffuseColor="0.88 0.87 0.83"/>
+                </Appearance>
+                <Box size="0.12 1.1 3.6"/>
+            </Shape>
+        </Transform>
+
+        <!-- Lewa balustrada boczna -->
+        <Transform translation="-13.15 0.72 1.75">
+            <Shape>
+                <Appearance>
+                    <Material diffuseColor="0.88 0.87 0.83"/>
+                </Appearance>
+                <Box size="2.1 1.1 0.12"/>
+            </Shape>
+        </Transform>
+
+        <!-- Prawa balustrada boczna -->
+        <Transform translation="-13.15 0.72 -1.75">
+            <Shape>
+                <Appearance>
+                    <Material diffuseColor="0.88 0.87 0.83"/>
+                </Appearance>
+                <Box size="2.1 1.1 0.12"/>
+            </Shape>
+        </Transform>
+      </Transform>
+    </Group>
+
+
+    <!-- ====================================== -->
+    <!-- BALKONY NAD WEJŚCIEM - 14 KONDYGNACJI -->
+    <!-- ====================================== -->
+
+        <Transform translation="0 2.8 0">
+            <Group USE="BALCONY_MODULE"/>
+        </Transform>
+
+        <Transform translation="0 5.6 0">
+            <Group USE="BALCONY_MODULE"/>
+        </Transform>
+
+        <Transform translation="0 8.4 0">
+            <Group USE="BALCONY_MODULE"/>
+        </Transform>
+
+        <Transform translation="0 11.2 0">
+            <Group USE="BALCONY_MODULE"/>
+        </Transform>
+
+        <Transform translation="0 14 0">
+            <Group USE="BALCONY_MODULE"/>
+        </Transform>
+
+        <Transform translation="0 16.8 0">
+            <Group USE="BALCONY_MODULE"/>
+        </Transform>
+
+        <Transform translation="0 19.6 0">
+            <Group USE="BALCONY_MODULE"/>
+        </Transform>
+
+        <Transform translation="0 22.4 0">
+            <Group USE="BALCONY_MODULE"/>
+        </Transform>
+
+        <Transform translation="0 25.2 0">
+            <Group USE="BALCONY_MODULE"/>
+        </Transform>
+
+        <Transform translation="0 28 0">
+            <Group USE="BALCONY_MODULE"/>
+        </Transform>
+
+        <Transform translation="0 30.8 0">
+            <Group USE="BALCONY_MODULE"/>
+        </Transform>
+
+        <Transform translation="0 33.6 0">
+            <Group USE="BALCONY_MODULE"/>
+        </Transform>
+
+        <Transform translation="0 36.4 0">
+            <Group USE="BALCONY_MODULE"/>
+        </Transform>
+
+
+    <!-- ====================================== -->
+    <!-- WEJŚCIE GŁÓWNE DS1 OLIMP -->
+    <!-- ====================================== -->
+
+    <Transform translation="-12.08 1.15 0">
+
+        <!-- Przeszklenie wejściowe -->
+        <Shape>
+            <Appearance>
+                <Material diffuseColor="0.18 0.29 0.34"/>
+            </Appearance>
+            <Box size="0.08 2.1 2.5"/>
+        </Shape>
+
+        <!-- Lewe skrzydło drzwi -->
+        <Transform translation="-0.08 0 -0.58">
+            <Shape>
+                <Appearance>
+                    <Material diffuseColor="0.12 0.19 0.22"/>
+                </Appearance>
+                <Box size="0.12 2.0 1.1"/>
+            </Shape>
+        </Transform>
+
+        <!-- Prawe skrzydło drzwi -->
+        <Transform translation="-0.08 0 0.58">
+            <Shape>
+                <Appearance>
+                    <Material diffuseColor="0.20 0.31 0.36"/>
+                </Appearance>
+                <Box size="0.12 2.0 1.1"/>
+            </Shape>
+        </Transform>
+
+        <!-- Górna rama -->
+        <Transform translation="-0.10 1.08 0">
+            <Shape>
+                <Appearance>
+                    <Material diffuseColor="0.90 0.89 0.85"/>
+                </Appearance>
+                <Box size="0.16 0.12 2.65"/>
+            </Shape>
+        </Transform>
+
+        <!-- Pierwszy stopień -->
+        <Transform translation="-0.45 -1.15 0">
+            <Shape>
+                <Appearance>
+                    <Material diffuseColor="0.72 0.71 0.68"/>
+                </Appearance>
+                <Box size="0.45 0.24 2.2"/>
+            </Shape>
+        </Transform>
+
+        <!-- Drugi stopień -->
+        <Transform translation="-0.85 -1.27 0">
+            <Shape>
+                <Appearance>
+                    <Material diffuseColor="0.72 0.71 0.68"/>
+                </Appearance>
+                <Box size="0.45 0.24 2.2"/>
+            </Shape>
+        </Transform>
+
+    </Transform>
+
+
+    <!-- ====================================== -->
+    <!-- NAPIS OLIMP -->
+    <!-- ====================================== -->
+
+    <Transform translation="-12.28 2.5 1.7"
+               rotation="0 1 0 -1.5708">
+
+        <Shape>
+            <Appearance>
+                <Material diffuseColor="0.05 0.05 0.05"
+                          emissiveColor="0.03 0.03 0.03"/>
+            </Appearance>
+
+            <Text string='"OLIMP"'>
+                <FontStyle size="1.1"
+                           family='"SANS"'
+                           style="BOLD"/>
+            </Text>
+        </Shape>
+
+    </Transform>
+
+
+    <!-- ====================================== -->
+    <!-- PIONOWY TRZON KOMUNIKACYJNY -->
+    <!-- ====================================== -->
+
+    <Transform translation="12.8 21 0">
+
+        <Shape>
+            <Appearance>
+                <Material diffuseColor="0.72 0.71 0.68"/>
+            </Appearance>
+            <Box size="1.6 42 12"/>
+        </Shape>
+
+        <!-- Pionowe przeszklenie -->
+        <Transform translation="0 0 6.08">
+            <Shape>
+                <Appearance>
+                    <Material diffuseColor="0.18 0.26 0.30"/>
+                </Appearance>
+                <Box size="1.1 40 0.15"/>
+            </Shape>
+        </Transform>
+
+    </Transform>
+
+
+    <!-- ====================================== -->
+    <!-- DACH -->
+    <!-- ====================================== -->
+
+    <Transform translation="0 42.15 0">
+        <Shape>
+            <Appearance>
+                <Material diffuseColor="0.58 0.57 0.53"/>
+            </Appearance>
+            <Box size="24.5 0.35 12.5"/>
+        </Shape>
+    </Transform>
+
+
+    <!-- ====================================== -->
+    <!-- TEREN -->
+    <!-- ====================================== -->
+
+    <Transform translation="0 -0.35 0">
+        <Shape>
+            <Appearance>
+                <Material diffuseColor="0.38 0.40 0.36"/>
+            </Appearance>
+            <Box size="60 0.5 45"/>
+        </Shape>
+    </Transform>
+
+</Scene>
+</X3D>

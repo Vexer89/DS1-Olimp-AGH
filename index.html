@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Olimp AGH - Model 3D</title>
+
+    <link
+      rel="stylesheet"
+      href="https://www.x3dom.org/download/1.8.3/x3dom.css"
+    />
+
+    <link rel="stylesheet" href="css/style.css" />
+
+    <script src="https://www.x3dom.org/download/1.8.3/x3dom.js"></script>
+  </head>
+
+  <body>
+    <header>
+      <div>
+        <h1>OLIMP AGH</h1>
+        <p>Wirtualny model akademika</p>
+      </div>
+
+      <button id="resetCamera">Resetuj widok</button>
+    </header>
+
+    <main>
+      <section class="model-container">
+        <x3d id="buildingScene">
+          <Scene>
+            <Viewpoint
+              id="mainCamera"
+              position="0 18 55"
+              orientation="1 0 0 -0.25"
+              fieldOfView="0.75"
+            >
+            </Viewpoint>
+
+            <Background skyColor="0.75 0.85 0.95"></Background>
+
+            <DirectionalLight direction="-1 -1 -1" intensity="0.9">
+            </DirectionalLight>
+
+            <Inline id="buildingModel" url='"./x3d/building.x3d"' load="true">
+            </Inline>
+          </Scene>
+        </x3d>
+      </section>
+
+      <section class="information">
+        <h2>Akademik Olimp</h2>
+
+        <p>
+          Trójwymiarowa wizualizacja budynku akademika Olimp należącego do
+          Akademii Górniczo-Hutniczej w Krakowie.
+        </p>
+
+        <p>Projekt wykonany w technologii X3D i X3DOM.</p>
+      </section>
+    </main>
+
+    <footer>
+      <p>Projekt edukacyjny | AGH Kraków</p>
+    </footer>
+
+    <script src="js/app.js"></script>
+  </body>
+</html>
