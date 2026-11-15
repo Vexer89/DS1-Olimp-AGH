@@ -1,0 +1,16 @@
+.information {
+  margin-top: 25px;
+  padding: 25px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.information h2 {
+  color: #17365d;
+  margin-bottom: 12px;
+}
+
+.information p {
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
