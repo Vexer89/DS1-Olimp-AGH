@@ -1,8 +1,16 @@
-const resetButton = document.getElementById("resetCamera");
+import { NavigationController, MODES } from "./navigation/navigationController.js";
+import { bindNavigationPanel } from "./ui/navigationPanel.js";
 
-resetButton.addEventListener("click", function () {
-  const camera = document.getElementById("mainCamera");
-
-  camera.setAttribute("position", "0 18 55");
-  camera.setAttribute("orientation", "1 0 0 -0.25");
+const navigation = new NavigationController({
+  scene: document.getElementById("buildingScene"),
+  camera: document.getElementById("mainCamera"),
+  navInfo: document.getElementById("navInfo"),
 });
+
+bindNavigationPanel(navigation, {
+  modeButton: document.getElementById("toggleMode"),
+  resetButton: document.getElementById("resetCamera"),
+  hint: document.getElementById("controlsHint"),
+});
+
+navigation.setMode(MODES.FLY);

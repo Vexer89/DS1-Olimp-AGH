@@ -1,0 +1,38 @@
+.model-container {
+  position: relative;
+  width: 100%;
+  height: 650px;
+  background-color: #dce6f1;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+x3d {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: none;
+}
+
+.controls-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  z-index: 10;
+
+  padding: 10px 18px;
+  background-color: rgba(23, 54, 93, 0.85);
+  color: white;
+  border-radius: 6px;
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
+
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
+.controls-hint.hidden {
+  opacity: 0;
+}
