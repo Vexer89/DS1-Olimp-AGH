@@ -11,7 +11,7 @@ const HINTS = {
     "Środkowy – przesuwanie · Kółko – zoom",
   [MODES.FLY]:
     "<strong>Kliknij w scenę, aby sterować</strong><br />" +
-    "WASD – ruch · Spacja – w górę · Shift – w dół · " +
+    "WASD – ruch · E – szybciej · Spacja – w górę · Shift – w dół · " +
     "Mysz – rozglądanie · Esc – wyjście",
 };
 

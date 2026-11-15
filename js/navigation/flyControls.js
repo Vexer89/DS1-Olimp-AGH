@@ -8,6 +8,7 @@ const CONTROL_KEYS = new Set([
   "Space",
   "ShiftLeft",
   "ShiftRight",
+  "KeyE",
 ]);
 
 export class FlyControls {
@@ -93,7 +94,9 @@ export class FlyControls {
   }
 
   move(dt) {
-    const { moveSpeed, verticalSpeed, minHeight } = this.settings;
+    const { moveSpeed, verticalSpeed, minHeight, sprintMultiplier } =
+      this.settings;
+    const boost = this.pressed.has("KeyE") ? sprintMultiplier : 1;
 
     let forward = 0;
     let strafe = 0;
@@ -117,11 +120,13 @@ export class FlyControls {
     const sinYaw = Math.sin(this.pose.yaw);
     const cosYaw = Math.cos(this.pose.yaw);
 
-    this.pose.x += (-sinYaw * forward + cosYaw * strafe) * moveSpeed * dt;
-    this.pose.z += (-cosYaw * forward - sinYaw * strafe) * moveSpeed * dt;
+    this.pose.x +=
+      (-sinYaw * forward + cosYaw * strafe) * moveSpeed * boost * dt;
+    this.pose.z +=
+      (-cosYaw * forward - sinYaw * strafe) * moveSpeed * boost * dt;
     this.pose.y = Math.max(
       minHeight,
-      this.pose.y + vertical * verticalSpeed * dt
+      this.pose.y + vertical * verticalSpeed * boost * dt
     );
 
     applyPose(this.camera, this.pose);
