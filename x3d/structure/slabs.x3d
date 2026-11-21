@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<X3D profile="Immersive" version="3.3"
+     xmlns="http://www.web3d.org/specifications/x3d-namespace">
+
+<!-- Stropy między kondygnacjami. Współrzędne budynku: y = 0 to podłoga parteru -->
+
+<Scene>
+
+    <!-- y = 0 to poziom kondygnacji z elewacji. Strop gr. 0.2 m podniesiony o 0.4 m (y: 0.2 .. 0.4):
+         parapet 0.7 m nad podłogą, sufit 0.4 m nad oknem. Strop do wewnętrznych powierzchni ścian
+         (x: ±17.9, z: ±9.5), z wycięciami na obie wnęki (x: ±14.5 .. ±17.9, z: -2.9 .. 2.9) -->
+    <Transform translation="0 2.8 0">
+        <Group DEF="FLOOR_SLAB">
+            <Transform translation="0 0.3 0">
+                <Shape>
+                    <Appearance DEF="FLOOR_SLAB_APPEARANCE">
+                        <Material diffuseColor="0.62 0.61 0.58"/>
+                    </Appearance>
+                    <Box size="28.6 0.2 19.0"/>
+                </Shape>
+            </Transform>
+
+            <Transform translation="-16.1 0.3 6.2">
+                <Shape DEF="FLOOR_SLAB_SIDE">
+                    <Appearance USE="FLOOR_SLAB_APPEARANCE"/>
+                    <Box size="3.6 0.2 6.6"/>
+                </Shape>
+            </Transform>
+            <Transform translation="-16.1 0.3 -6.2"><Shape USE="FLOOR_SLAB_SIDE"/></Transform>
+            <Transform translation="16.1 0.3 6.2"><Shape USE="FLOOR_SLAB_SIDE"/></Transform>
+            <Transform translation="16.1 0.3 -6.2"><Shape USE="FLOOR_SLAB_SIDE"/></Transform>
+        </Group>
+    </Transform>
+
+    <Transform translation="0 5.6 0"><Group USE="FLOOR_SLAB"/></Transform>
+    <Transform translation="0 8.4 0"><Group USE="FLOOR_SLAB"/></Transform>
+    <Transform translation="0 11.2 0"><Group USE="FLOOR_SLAB"/></Transform>
+    <Transform translation="0 14 0"><Group USE="FLOOR_SLAB"/></Transform>
+    <Transform translation="0 16.8 0"><Group USE="FLOOR_SLAB"/></Transform>
+    <Transform translation="0 19.6 0"><Group USE="FLOOR_SLAB"/></Transform>
+    <Transform translation="0 22.4 0"><Group USE="FLOOR_SLAB"/></Transform>
+    <Transform translation="0 25.2 0"><Group USE="FLOOR_SLAB"/></Transform>
+    <Transform translation="0 28 0"><Group USE="FLOOR_SLAB"/></Transform>
+    <Transform translation="0 30.8 0"><Group USE="FLOOR_SLAB"/></Transform>
+    <Transform translation="0 33.6 0"><Group USE="FLOOR_SLAB"/></Transform>
+    <Transform translation="0 36.4 0"><Group USE="FLOOR_SLAB"/></Transform>
+    <Transform translation="0 39.2 0"><Group USE="FLOOR_SLAB"/></Transform>
+    <Transform translation="0 42 0"><Group USE="FLOOR_SLAB"/></Transform>
+
+</Scene>
+</X3D>

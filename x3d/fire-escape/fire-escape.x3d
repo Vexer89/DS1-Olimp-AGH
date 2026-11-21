@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<X3D profile="Immersive" version="3.3"
+     xmlns="http://www.web3d.org/specifications/x3d-namespace">
+
+<!-- Zewnętrzna klatka ewakuacyjna we wnęce naprzeciw wejścia (x: 14.6 .. 18, z: -2.8 .. 2.8).
+     Współrzędne budynku: y = 0 to podłoga parteru, teren we wnęce na y = -0.6 -->
+
+<Scene>
+
+    <Switch whichChoice="-1">
+
+    <!-- ====================================== -->
+    <!-- WSPÓLNE DEFINICJE -->
+    <!-- ====================================== -->
+
+    <!-- Te same wyglądy co w balconies/balconies.x3d - DEF/USE nie działa między plikami -->
+    <Group>
+        <Shape>
+            <Appearance DEF="GLAZING_FRAME_APPEARANCE">
+                <Material diffuseColor="0.92 0.91 0.87"/>
+            </Appearance>
+            <Box size="0.01 0.01 0.01"/>
+        </Shape>
+
+        <Shape>
+            <Appearance DEF="GLASS_APPEARANCE">
+                <Material diffuseColor="0.17 0.27 0.32"
+                          specularColor="0.5 0.5 0.5"
+                          shininess="0.6"
+                          transparency="0.6"/>
+            </Appearance>
+            <Box size="0.01 0.01 0.01"/>
+        </Shape>
+
+        <Shape DEF="DOOR_HANDLE">
+            <Appearance DEF="FLAT_BAR_APPEARANCE">
+                <Material diffuseColor="0.30 0.30 0.30"
+                          specularColor="0.4 0.4 0.4"
+                          shininess="0.3"/>
+            </Appearance>
+            <Box size="0.04 0.25 0.03"/>
+        </Shape>
+
+        <!-- Kratka: kafel 8x8 px = jedno oczko (drut w 1. wierszu i 1. kolumnie) -->
+        <Shape>
+            <Appearance>
+                <Material DEF="MESH_MATERIAL"
+                          diffuseColor="0.35 0.35 0.35"
+                          transparency="0.05"/>
+                <PixelTexture DEF="WIRE_MESH"
+                    image="8 8 4
+                    0x404040FF 0x404040FF 0x404040FF 0x404040FF 0x404040FF 0x404040FF 0x404040FF 0x404040FF
+                    0x404040FF 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000
+                    0x404040FF 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000
+                    0x404040FF 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000
+                    0x404040FF 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000
+                    0x404040FF 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000
+                    0x404040FF 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000
+                    0x404040FF 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000"/>
+            </Appearance>
+            <Box size="0.01 0.01 0.01"/>
+        </Shape>
+    </Group>
+
+
+    <!-- ====================================== -->
+    <!-- MODUŁ KLATKI EWAKUACYJNEJ -->
+    <!-- ====================================== -->
+
+    <!-- y = 0 to poziom podłogi kondygnacji, moduł schodzi do y = -2.8 -->
+    <Group DEF="FIRE_ESCAPE_MODULE">
+
+        <!-- Ściana klatki: okno | drzwi | okno | drzwi | okno, po 1.12 m, na całą wysokość.
+             Wszystkie pola przedzielone w połowie wysokości -->
+        <Group DEF="FIRE_WALL_GLAZING">
+            <!-- Rama każdego pola z 4 listew 5 cm - przez środek widać wnętrze -->
+            <Transform translation="14.45 1.3 -2.24">
+                <Group DEF="FIRE_PANEL_FRAME">
+                    <Transform translation="0 1.275 0">
+                        <Shape DEF="FIRE_PANEL_FRAME_H">
+                            <Appearance USE="GLAZING_FRAME_APPEARANCE"/>
+                            <Box size="0.04 0.05 1.12"/>
+                        </Shape>
+                    </Transform>
+                    <Transform translation="0 -1.275 0"><Shape USE="FIRE_PANEL_FRAME_H"/></Transform>
+
+                    <Transform translation="0 0 0.535">
+                        <Shape DEF="FIRE_PANEL_FRAME_V">
+                            <Appearance USE="GLAZING_FRAME_APPEARANCE"/>
+                            <Box size="0.04 2.6 0.05"/>
+                        </Shape>
+                    </Transform>
+                    <Transform translation="0 0 -0.535"><Shape USE="FIRE_PANEL_FRAME_V"/></Transform>
+                </Group>
+            </Transform>
+            <Transform translation="14.45 1.3 -1.12"><Group USE="FIRE_PANEL_FRAME"/></Transform>
+            <Transform translation="14.45 1.3 0"><Group USE="FIRE_PANEL_FRAME"/></Transform>
+            <Transform translation="14.45 1.3 1.12"><Group USE="FIRE_PANEL_FRAME"/></Transform>
+            <Transform translation="14.45 1.3 2.24"><Group USE="FIRE_PANEL_FRAME"/></Transform>
+
+            <Transform translation="14.48 1.3 -2.24">
+                <Shape DEF="FIRE_PANEL_GLASS">
+                    <Appearance USE="GLASS_APPEARANCE"/>
+                    <Box size="0.02 2.5 1.02"/>
+                </Shape>
+            </Transform>
+            <Transform translation="14.48 1.3 -1.12"><Shape USE="FIRE_PANEL_GLASS"/></Transform>
+            <Transform translation="14.48 1.3 0"><Shape USE="FIRE_PANEL_GLASS"/></Transform>
+            <Transform translation="14.48 1.3 1.12"><Shape USE="FIRE_PANEL_GLASS"/></Transform>
+            <Transform translation="14.48 1.3 2.24"><Shape USE="FIRE_PANEL_GLASS"/></Transform>
+
+            <Transform translation="14.495 1.3 -2.24">
+                <Shape DEF="FIRE_WINDOW_BAR">
+                    <Appearance USE="GLAZING_FRAME_APPEARANCE"/>
+                    <Box size="0.03 0.05 1.02"/>
+                </Shape>
+            </Transform>
+            <Transform translation="14.495 1.3 -1.12"><Shape USE="FIRE_WINDOW_BAR"/></Transform>
+            <Transform translation="14.495 1.3 0"><Shape USE="FIRE_WINDOW_BAR"/></Transform>
+            <Transform translation="14.495 1.3 1.12"><Shape USE="FIRE_WINDOW_BAR"/></Transform>
+            <Transform translation="14.495 1.3 2.24"><Shape USE="FIRE_WINDOW_BAR"/></Transform>
+
+            <Transform translation="14.51 1.05 -0.72"><Shape USE="DOOR_HANDLE"/></Transform>
+            <Transform translation="14.51 1.05 0.72"><Shape USE="DOOR_HANDLE"/></Transform>
+        </Group>
+
+        <!-- Płyta przy drzwiach i płyta pośrednia -->
+        <Transform translation="15.1 -0.1 0">
+            <Shape DEF="FIRE_LANDING">
+                <Appearance>
+                    <Material diffuseColor="0.91 0.90 0.86"/>
+                </Appearance>
+                <Box size="1.0 0.2 3.4"/>
+            </Shape>
+        </Transform>
+
+        <Transform translation="17.5 -1.5 0">
+            <Shape USE="FIRE_LANDING"/>
+        </Transform>
+
+        <!-- Bieg po prawej od drzwi: 7 stopni 0.2 x 0.2 m w dół, od budynku -->
+        <Transform translation="15.7 -0.3 1.2">
+            <Shape DEF="FIRE_STEP">
+                <Appearance>
+                    <Material diffuseColor="0.80 0.79 0.75"/>
+                </Appearance>
+                <Box size="0.2 0.2 1.0"/>
+            </Shape>
+        </Transform>
+        <Transform translation="15.9 -0.5 1.2"><Shape USE="FIRE_STEP"/></Transform>
+        <Transform translation="16.1 -0.7 1.2"><Shape USE="FIRE_STEP"/></Transform>
+        <Transform translation="16.3 -0.9 1.2"><Shape USE="FIRE_STEP"/></Transform>
+        <Transform translation="16.5 -1.1 1.2"><Shape USE="FIRE_STEP"/></Transform>
+        <Transform translation="16.7 -1.3 1.2"><Shape USE="FIRE_STEP"/></Transform>
+        <Transform translation="16.9 -1.5 1.2"><Shape USE="FIRE_STEP"/></Transform>
+
+        <!-- Bieg po lewej: w stronę budynku, do płyty kondygnacji niżej -->
+        <Transform translation="16.9 -1.7 -1.2"><Shape USE="FIRE_STEP"/></Transform>
+        <Transform translation="16.7 -1.9 -1.2"><Shape USE="FIRE_STEP"/></Transform>
+        <Transform translation="16.5 -2.1 -1.2"><Shape USE="FIRE_STEP"/></Transform>
+        <Transform translation="16.3 -2.3 -1.2"><Shape USE="FIRE_STEP"/></Transform>
+        <Transform translation="16.1 -2.5 -1.2"><Shape USE="FIRE_STEP"/></Transform>
+        <Transform translation="15.9 -2.7 -1.2"><Shape USE="FIRE_STEP"/></Transform>
+        <Transform translation="15.7 -2.9 -1.2"><Shape USE="FIRE_STEP"/></Transform>
+
+        <!-- Murki biegów: równoległoboki z pionowymi końcami (x = 15.6 i 17.0),
+             górą 0.6 m nad linią stopni, dołem 0.3 m pod nią -->
+        <Transform translation="0 0 1.75">
+            <Shape DEF="FLIGHT_PARAPET_OUT">
+                <Appearance DEF="FIRE_PARAPET_APPEARANCE">
+                    <Material diffuseColor="0.88 0.87 0.83"/>
+                </Appearance>
+                <IndexedFaceSet solid="false"
+                    coordIndex="0 1 2 3 -1 4 5 6 7 -1 0 1 5 4 -1 1 2 6 5 -1 2 3 7 6 -1 3 0 4 7 -1">
+                    <Coordinate point="15.6 0.6 -0.05, 17.0 -0.8 -0.05, 17.0 -1.7 -0.05, 15.6 -0.3 -0.05,
+                                       15.6 0.6 0.05, 17.0 -0.8 0.05, 17.0 -1.7 0.05, 15.6 -0.3 0.05"/>
+                </IndexedFaceSet>
+            </Shape>
+        </Transform>
+
+        <Transform translation="0 0 -1.75">
+            <Shape DEF="FLIGHT_PARAPET_IN">
+                <Appearance USE="FIRE_PARAPET_APPEARANCE"/>
+                <IndexedFaceSet solid="false"
+                    coordIndex="0 1 2 3 -1 4 5 6 7 -1 0 1 5 4 -1 1 2 6 5 -1 2 3 7 6 -1 3 0 4 7 -1">
+                    <Coordinate point="17.0 -0.8 -0.05, 15.6 -2.2 -0.05, 15.6 -3.1 -0.05, 17.0 -1.7 -0.05,
+                                       17.0 -0.8 0.05, 15.6 -2.2 0.05, 15.6 -3.1 0.05, 17.0 -1.7 0.05"/>
+                </IndexedFaceSet>
+            </Shape>
+        </Transform>
+
+        <!-- Murki płyt tam, gdzie nie ma kratki -->
+        <Transform translation="15.1 0.2 1.75">
+            <Shape DEF="LANDING_PARAPET_END">
+                <Appearance USE="FIRE_PARAPET_APPEARANCE"/>
+                <Box size="1.0 0.8 0.1"/>
+            </Shape>
+        </Transform>
+        <Transform translation="15.1 0.2 -1.75"><Shape USE="LANDING_PARAPET_END"/></Transform>
+        <Transform translation="17.5 -1.2 1.75"><Shape USE="LANDING_PARAPET_END"/></Transform>
+        <Transform translation="17.5 -1.2 -1.75"><Shape USE="LANDING_PARAPET_END"/></Transform>
+
+        <Transform translation="15.65 0.2 0">
+            <Shape DEF="LANDING_PARAPET_WELL">
+                <Appearance USE="FIRE_PARAPET_APPEARANCE"/>
+                <Box size="0.1 0.8 1.2"/>
+            </Shape>
+        </Transform>
+        <Transform translation="16.95 -1.2 0"><Shape USE="LANDING_PARAPET_WELL"/></Transform>
+
+        <!-- Siatka 0.6 m na zewnętrznej krawędzi płyty pośredniej (3.4 / 0.03, 0.6 / 0.03) -->
+        <Transform translation="17.95 -1.1 0">
+            <Shape>
+                <Appearance>
+                    <Material USE="MESH_MATERIAL"/>
+                    <PixelTexture USE="WIRE_MESH"/>
+                    <TextureTransform scale="113.33 20"/>
+                </Appearance>
+                <Box size="0.02 0.6 3.4"/>
+            </Shape>
+        </Transform>
+
+        <Transform translation="17.95 -1.1 -1.685">
+            <Shape DEF="FIRE_BAR_V">
+                <Appearance USE="FLAT_BAR_APPEARANCE"/>
+                <Box size="0.03 0.6 0.03"/>
+            </Shape>
+        </Transform>
+        <Transform translation="17.95 -1.1 0"><Shape USE="FIRE_BAR_V"/></Transform>
+        <Transform translation="17.95 -1.1 1.685"><Shape USE="FIRE_BAR_V"/></Transform>
+
+        <Transform translation="17.95 -1.385 0">
+            <Shape>
+                <Appearance USE="FLAT_BAR_APPEARANCE"/>
+                <Box size="0.03 0.03 3.4"/>
+            </Shape>
+        </Transform>
+
+        <!-- Rury uniesione 5 cm nad murkami i kratką na nóżkach -->
+
+        <!-- Rura nad siatką - Cylinder obrócony z osi Y na oś Z -->
+        <Transform translation="17.95 -0.725 0" rotation="1 0 0 1.5708">
+            <Shape>
+                <Appearance DEF="PIPE_APPEARANCE">
+                    <Material diffuseColor="0.30 0.30 0.30"
+                              specularColor="0.5 0.5 0.5"
+                              shininess="0.4"/>
+                </Appearance>
+                <Cylinder radius="0.025" height="3.5"/>
+            </Shape>
+        </Transform>
+
+        <!-- Łączniki: od końca rury na biegu (x = 17.0) do rury nad siatką (x = 17.95),
+             po murkach krótkich boków płyty - Cylinder obrócony z osi Y na oś X -->
+        <Transform translation="17.475 -0.725 1.75" rotation="0 0 1 1.5708">
+            <Shape DEF="LANDING_PIPE">
+                <Appearance USE="PIPE_APPEARANCE"/>
+                <Cylinder radius="0.025" height="0.95"/>
+            </Shape>
+        </Transform>
+        <Transform translation="17.475 -0.725 -1.75" rotation="0 0 1 1.5708">
+            <Shape USE="LANDING_PIPE"/>
+        </Transform>
+
+        <!-- Kule w narożnikach i na załamaniu 45° - zakrywają szczeliny między walcami -->
+        <Transform translation="17.0 -0.72 1.75">
+            <Shape DEF="PIPE_JOINT">
+                <Appearance USE="PIPE_APPEARANCE"/>
+                <Sphere radius="0.025"/>
+            </Shape>
+        </Transform>
+        <Transform translation="17.0 -0.72 -1.75"><Shape USE="PIPE_JOINT"/></Transform>
+        <Transform translation="17.95 -0.725 1.75"><Shape USE="PIPE_JOINT"/></Transform>
+        <Transform translation="17.95 -0.725 -1.75"><Shape USE="PIPE_JOINT"/></Transform>
+
+        <!-- Rury na murkach biegów - Cylinder obrócony z osi Y wzdłuż spadku 45° -->
+        <Transform translation="16.3 -0.015 1.75" rotation="0 0 1 0.7854">
+            <Shape DEF="FLIGHT_PIPE">
+                <Appearance USE="PIPE_APPEARANCE"/>
+                <Cylinder radius="0.025" height="1.98"/>
+            </Shape>
+        </Transform>
+        <Transform translation="16.3 -1.415 -1.75" rotation="0 0 1 -0.7854">
+            <Shape USE="FLIGHT_PIPE"/>
+        </Transform>
+
+        <!-- Nóżki 5 cm: nad płaskownikami kratki, na środku łączników i po dwie na biegach -->
+        <Transform translation="17.95 -0.775 -1.685">
+            <Shape DEF="PIPE_POST">
+                <Appearance USE="PIPE_APPEARANCE"/>
+                <Cylinder radius="0.012" height="0.05"/>
+            </Shape>
+        </Transform>
+        <Transform translation="17.95 -0.775 0"><Shape USE="PIPE_POST"/></Transform>
+        <Transform translation="17.95 -0.775 1.685"><Shape USE="PIPE_POST"/></Transform>
+
+        <Transform translation="17.475 -0.775 1.75"><Shape USE="PIPE_POST"/></Transform>
+        <Transform translation="17.475 -0.775 -1.75"><Shape USE="PIPE_POST"/></Transform>
+
+        <Transform translation="15.95 0.275 1.75"><Shape USE="PIPE_POST"/></Transform>
+        <Transform translation="16.65 -0.425 1.75"><Shape USE="PIPE_POST"/></Transform>
+        <Transform translation="16.65 -1.125 -1.75"><Shape USE="PIPE_POST"/></Transform>
+        <Transform translation="15.95 -1.825 -1.75"><Shape USE="PIPE_POST"/></Transform>
+
+        <!-- Rurki na murkach płyty przy drzwiach: od ściany (x = 14.6) do rurek biegów (x = 15.6) -->
+        <Group DEF="LANDING_RAIL">
+            <Transform translation="15.1 0.675 1.75" rotation="0 0 1 1.5708">
+                <Shape DEF="DOOR_LANDING_PIPE">
+                    <Appearance USE="PIPE_APPEARANCE"/>
+                    <Cylinder radius="0.025" height="1.0"/>
+                </Shape>
+            </Transform>
+            <Transform translation="15.1 0.675 -1.75" rotation="0 0 1 1.5708">
+                <Shape USE="DOOR_LANDING_PIPE"/>
+            </Transform>
+
+            <Transform translation="15.6 0.68 1.75"><Shape USE="PIPE_JOINT"/></Transform>
+            <Transform translation="15.6 0.68 -1.75"><Shape USE="PIPE_JOINT"/></Transform>
+
+            <Transform translation="15.1 0.625 1.75"><Shape USE="PIPE_POST"/></Transform>
+            <Transform translation="15.1 0.625 -1.75"><Shape USE="PIPE_POST"/></Transform>
+        </Group>
+
+    </Group>
+
+    </Switch>
+
+
+    <!-- ====================================== -->
+    <!-- KLATKA EWAKUACYJNA - 15 MODUŁÓW (kondygnacje 2-16) -->
+    <!-- ====================================== -->
+
+    <!-- Płyta przy drzwiach = podłoga piętra: 2.8 * k + 0.4 -->
+    <Transform translation="0 3.2 0"><Group USE="FIRE_ESCAPE_MODULE"/></Transform>
+    <Transform translation="0 6.0 0"><Group USE="FIRE_ESCAPE_MODULE"/></Transform>
+    <Transform translation="0 8.8 0"><Group USE="FIRE_ESCAPE_MODULE"/></Transform>
+    <Transform translation="0 11.6 0"><Group USE="FIRE_ESCAPE_MODULE"/></Transform>
+    <Transform translation="0 14.4 0"><Group USE="FIRE_ESCAPE_MODULE"/></Transform>
+    <Transform translation="0 17.2 0"><Group USE="FIRE_ESCAPE_MODULE"/></Transform>
+    <Transform translation="0 20.0 0"><Group USE="FIRE_ESCAPE_MODULE"/></Transform>
+    <Transform translation="0 22.8 0"><Group USE="FIRE_ESCAPE_MODULE"/></Transform>
+    <Transform translation="0 25.6 0"><Group USE="FIRE_ESCAPE_MODULE"/></Transform>
+    <Transform translation="0 28.4 0"><Group USE="FIRE_ESCAPE_MODULE"/></Transform>
+    <Transform translation="0 31.2 0"><Group USE="FIRE_ESCAPE_MODULE"/></Transform>
+    <Transform translation="0 34.0 0"><Group USE="FIRE_ESCAPE_MODULE"/></Transform>
+    <Transform translation="0 36.8 0"><Group USE="FIRE_ESCAPE_MODULE"/></Transform>
+    <Transform translation="0 39.6 0"><Group USE="FIRE_ESCAPE_MODULE"/></Transform>
+    <Transform translation="0 42.4 0"><Group USE="FIRE_ESCAPE_MODULE"/></Transform>
+
+    <!-- Płyta parteru klatki na y = 0.4 (tam kończy się ostatni bieg z góry) i bieg do terenu
+         (teren we wnęce: y = -0.6) -->
+    <Transform translation="0 0.4 0">
+        <Transform translation="15.1 -0.1 0"><Shape USE="FIRE_LANDING"/></Transform>
+
+        <Transform translation="15.1 0.2 1.75"><Shape USE="LANDING_PARAPET_END"/></Transform>
+        <Transform translation="15.1 0.2 -1.75"><Shape USE="LANDING_PARAPET_END"/></Transform>
+        <Transform translation="15.65 0.2 0"><Shape USE="LANDING_PARAPET_WELL"/></Transform>
+
+        <Group USE="FIRE_WALL_GLAZING"/>
+        <Group USE="LANDING_RAIL"/>
+    </Transform>
+
+    <!-- Bieg do terenu: 4 stopnie 0.2 x 0.2 m od y = 0.4, każdy wypełniony do ziemi -->
+    <Transform translation="15.7 -0.2 1.2">
+        <Shape>
+            <Appearance DEF="GROUND_STEP_APPEARANCE">
+                <Material diffuseColor="0.80 0.79 0.75"/>
+            </Appearance>
+            <Box size="0.2 0.8 1.0"/>
+        </Shape>
+    </Transform>
+
+    <Transform translation="15.9 -0.3 1.2">
+        <Shape>
+            <Appearance USE="GROUND_STEP_APPEARANCE"/>
+            <Box size="0.2 0.6 1.0"/>
+        </Shape>
+    </Transform>
+
+    <Transform translation="16.1 -0.4 1.2">
+        <Shape>
+            <Appearance USE="GROUND_STEP_APPEARANCE"/>
+            <Box size="0.2 0.4 1.0"/>
+        </Shape>
+    </Transform>
+
+    <Transform translation="16.3 -0.5 1.2">
+        <Shape>
+            <Appearance USE="GROUND_STEP_APPEARANCE"/>
+            <Box size="0.2 0.2 1.0"/>
+        </Shape>
+    </Transform>
+
+    <Transform translation="0 0 1.75">
+        <Shape>
+            <Appearance USE="FIRE_PARAPET_APPEARANCE"/>
+            <IndexedFaceSet solid="false"
+                coordIndex="0 1 2 3 -1 4 5 6 7 -1 0 1 5 4 -1 1 2 6 5 -1 2 3 7 6 -1 3 0 4 7 -1">
+                <Coordinate point="15.6 1.0 -0.05, 16.4 0.2 -0.05, 16.4 -0.6 -0.05, 15.6 -0.6 -0.05,
+                                   15.6 1.0 0.05, 16.4 0.2 0.05, 16.4 -0.6 0.05, 15.6 -0.6 0.05"/>
+            </IndexedFaceSet>
+        </Shape>
+    </Transform>
+
+    <Transform translation="16.0 0.685 1.75" rotation="0 0 1 0.7854">
+        <Shape>
+            <Appearance USE="PIPE_APPEARANCE"/>
+            <Cylinder radius="0.025" height="1.13"/>
+        </Shape>
+    </Transform>
+    <Transform translation="16.0 0.625 1.75"><Shape USE="PIPE_POST"/></Transform>
+
+    <!-- Kolumna w środku klatki: tylko ściany od strony biegów,
+         bez ściany zewnętrznej i bez ściany od strony wnęki.
+         Od terenu (y = -0.6) do wierzchu murku najwyższej płyty (y = 43.0) -->
+    <Transform translation="16.3 21.2 0.65">
+        <Shape DEF="FIRE_COLUMN_WALL">
+            <Appearance USE="FIRE_PARAPET_APPEARANCE"/>
+            <Box size="1.4 43.6 0.1"/>
+        </Shape>
+    </Transform>
+    <Transform translation="16.3 21.2 -0.65"><Shape USE="FIRE_COLUMN_WALL"/></Transform>
+
+    <!-- Najwyższa płyta (y = 42.4): murek w miejscu, gdzie dochodziłby bieg z góry -->
+    <Transform translation="15.65 42.6 -1.2">
+        <Shape>
+            <Appearance USE="FIRE_PARAPET_APPEARANCE"/>
+            <Box size="0.1 0.8 1.0"/>
+        </Shape>
+    </Transform>
+
+    <!-- Rurka na tym murku - Cylinder obrócony z osi Y na oś Z -->
+    <Transform translation="15.65 43.075 -1.2" rotation="1 0 0 1.5708">
+        <Shape>
+            <Appearance USE="PIPE_APPEARANCE"/>
+            <Cylinder radius="0.025" height="1.1"/>
+        </Shape>
+    </Transform>
+    <Transform translation="15.65 43.025 -1.2"><Shape USE="PIPE_POST"/></Transform>
+    <Transform translation="15.65 43.075 -1.75"><Shape USE="PIPE_JOINT"/></Transform>
+
+</Scene>
+</X3D>

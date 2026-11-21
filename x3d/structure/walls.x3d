@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<X3D profile="Immersive" version="3.3"
+     xmlns="http://www.web3d.org/specifications/x3d-namespace">
+
+<!-- Ściany krótkie i ściany obu wnęk. Współrzędne budynku: y = 0 to podłoga parteru.
+     Długie ściany z otworami okiennymi są w facade/facade.x3d -->
+
+<Scene>
+
+    <!-- Krótsza ściana prawa - strona dodatniego Z -->
+    <Transform translation="17.95 22.4 6.4">
+        <Shape>
+            <Appearance>
+                <Material diffuseColor="0.78 0.77 0.73"/>
+            </Appearance>
+            <Box size="0.1 44.8 7.2"/>
+        </Shape>
+    </Transform>
+
+    <!-- Krótsza ściana prawa - strona ujemnego Z -->
+    <Transform translation="17.95 22.4 -6.4">
+        <Shape>
+            <Appearance>
+                <Material diffuseColor="0.78 0.77 0.73"/>
+            </Appearance>
+            <Box size="0.1 44.8 7.2"/>
+        </Shape>
+    </Transform>
+
+    <!-- Krótsza ściana lewa - strona dodatniego Z -->
+    <Transform translation="-17.95 22.4 6.4">
+        <Shape>
+            <Appearance>
+                <Material diffuseColor="0.78 0.77 0.73"/>
+            </Appearance>
+            <Box size="0.1 44.8 7.2"/>
+        </Shape>
+    </Transform>
+
+    <!-- Krótsza ściana lewa - strona ujemnego Z -->
+    <Transform translation="-17.95 22.4 -6.4">
+        <Shape>
+            <Appearance>
+                <Material diffuseColor="0.78 0.77 0.73"/>
+            </Appearance>
+            <Box size="0.1 44.8 7.2"/>
+        </Shape>
+    </Transform>
+
+    <!-- Wnęka: 5.60 m szerokości, 3.40 m w głąb, od parteru do dachu.
+         Tylna ściana gr. 0.3 m (x: -14.6 .. -14.3, z: -2.9 .. 2.9) z otworami,
+         przeszklenia w środku jej grubości -->
+
+    <!-- Parter: otwór na przeszklenie wejścia (z: -2.8 .. 2.8, y: 0 .. 2.2), ściana do 1. balkonu (y = 3.2) -->
+    <Transform translation="-14.45 2.7 0">
+        <Shape>
+            <Appearance DEF="RECESS_WALL_APPEARANCE">
+                <Material diffuseColor="0.78 0.77 0.73"/>
+            </Appearance>
+            <Box size="0.3 1.0 5.8"/>
+        </Shape>
+    </Transform>
+
+    <!-- Piętra 2-16 (y = 0 to płyta balkonu = podłoga piętra): drzwi | murek 0.3 | 3 okna od 0.6 m | murek 0.3 | drzwi -->
+    <Transform translation="0 3.2 0">
+        <Group DEF="BALCONY_BACK_WALL">
+            <Transform translation="-14.45 1.4 1.65">
+                <Shape DEF="BALCONY_WALL_PIER">
+                    <Appearance USE="RECESS_WALL_APPEARANCE"/>
+                    <Box size="0.3 2.8 0.3"/>
+                </Shape>
+            </Transform>
+            <Transform translation="-14.45 1.4 -1.65"><Shape USE="BALCONY_WALL_PIER"/></Transform>
+
+            <Transform translation="-14.45 0.3 0">
+                <Shape>
+                    <Appearance USE="RECESS_WALL_APPEARANCE"/>
+                    <Box size="0.3 0.6 3.0"/>
+                </Shape>
+            </Transform>
+
+            <Transform translation="-14.45 2.7 0">
+                <Shape>
+                    <Appearance USE="RECESS_WALL_APPEARANCE"/>
+                    <Box size="0.3 0.2 5.8"/>
+                </Shape>
+            </Transform>
+        </Group>
+    </Transform>
+
+    <Transform translation="0 6.0 0"><Group USE="BALCONY_BACK_WALL"/></Transform>
+    <Transform translation="0 8.8 0"><Group USE="BALCONY_BACK_WALL"/></Transform>
+    <Transform translation="0 11.6 0"><Group USE="BALCONY_BACK_WALL"/></Transform>
+    <Transform translation="0 14.4 0"><Group USE="BALCONY_BACK_WALL"/></Transform>
+    <Transform translation="0 17.2 0"><Group USE="BALCONY_BACK_WALL"/></Transform>
+    <Transform translation="0 20.0 0"><Group USE="BALCONY_BACK_WALL"/></Transform>
+    <Transform translation="0 22.8 0"><Group USE="BALCONY_BACK_WALL"/></Transform>
+    <Transform translation="0 25.6 0"><Group USE="BALCONY_BACK_WALL"/></Transform>
+    <Transform translation="0 28.4 0"><Group USE="BALCONY_BACK_WALL"/></Transform>
+    <Transform translation="0 31.2 0"><Group USE="BALCONY_BACK_WALL"/></Transform>
+    <Transform translation="0 34.0 0"><Group USE="BALCONY_BACK_WALL"/></Transform>
+    <Transform translation="0 36.8 0"><Group USE="BALCONY_BACK_WALL"/></Transform>
+    <Transform translation="0 39.6 0"><Group USE="BALCONY_BACK_WALL"/></Transform>
+    <Transform translation="0 42.4 0"><Group USE="BALCONY_BACK_WALL"/></Transform>
+    <Transform translation="-16.25 22.4 2.85">
+        <Shape>
+            <Appearance>
+                <Material diffuseColor="0.78 0.77 0.73"/>
+            </Appearance>
+            <Box size="3.3 44.8 0.1"/>
+        </Shape>
+    </Transform>
+
+    <Transform translation="-16.25 22.4 -2.85">
+        <Shape>
+            <Appearance>
+                <Material diffuseColor="0.78 0.77 0.73"/>
+            </Appearance>
+            <Box size="3.3 44.8 0.1"/>
+        </Shape>
+    </Transform>
+
+    <Transform translation="-16.3 0.02 0">
+        <Shape>
+            <Appearance>
+                <Material diffuseColor="0.72 0.71 0.68"/>
+            </Appearance>
+            <Box size="3.4 0.04 5.6"/>
+        </Shape>
+    </Transform>
+
+    <!-- Wnęka klatki ewakuacyjnej - lustrzane odbicie wnęki wejściowej.
+         Tylna ściana gr. 0.3 m (x: 14.3 .. 14.6, z: -2.9 .. 2.9): przeszklenie na całą szerokość
+         do 2.6 m na każdej kondygnacji, ze ściany zostaje tylko pas 0.2 m pod kolejnym poziomem -->
+    <!-- Pod przeszkleniem parteru (płyta parteru klatki na y = 0.4) -->
+    <Transform translation="14.45 0.2 0">
+        <Shape>
+            <Appearance USE="RECESS_WALL_APPEARANCE"/>
+            <Box size="0.3 0.4 5.8"/>
+        </Shape>
+    </Transform>
+
+    <!-- Pasy 0.2 m nad przeszkleniem każdej kondygnacji (przeszklenie od 2.8 * k + 0.4 do + 2.6) -->
+    <Transform translation="14.45 3.1 0">
+        <Shape DEF="FIRE_BACK_WALL_STRIP">
+            <Appearance USE="RECESS_WALL_APPEARANCE"/>
+            <Box size="0.3 0.2 5.8"/>
+        </Shape>
+    </Transform>
+    <Transform translation="14.45 5.9 0"><Shape USE="FIRE_BACK_WALL_STRIP"/></Transform>
+    <Transform translation="14.45 8.7 0"><Shape USE="FIRE_BACK_WALL_STRIP"/></Transform>
+    <Transform translation="14.45 11.5 0"><Shape USE="FIRE_BACK_WALL_STRIP"/></Transform>
+    <Transform translation="14.45 14.3 0"><Shape USE="FIRE_BACK_WALL_STRIP"/></Transform>
+    <Transform translation="14.45 17.1 0"><Shape USE="FIRE_BACK_WALL_STRIP"/></Transform>
+    <Transform translation="14.45 19.9 0"><Shape USE="FIRE_BACK_WALL_STRIP"/></Transform>
+    <Transform translation="14.45 22.7 0"><Shape USE="FIRE_BACK_WALL_STRIP"/></Transform>
+    <Transform translation="14.45 25.5 0"><Shape USE="FIRE_BACK_WALL_STRIP"/></Transform>
+    <Transform translation="14.45 28.3 0"><Shape USE="FIRE_BACK_WALL_STRIP"/></Transform>
+    <Transform translation="14.45 31.1 0"><Shape USE="FIRE_BACK_WALL_STRIP"/></Transform>
+    <Transform translation="14.45 33.9 0"><Shape USE="FIRE_BACK_WALL_STRIP"/></Transform>
+    <Transform translation="14.45 36.7 0"><Shape USE="FIRE_BACK_WALL_STRIP"/></Transform>
+    <Transform translation="14.45 39.5 0"><Shape USE="FIRE_BACK_WALL_STRIP"/></Transform>
+    <Transform translation="14.45 42.3 0"><Shape USE="FIRE_BACK_WALL_STRIP"/></Transform>
+    <Transform translation="14.45 45.1 0"><Shape USE="FIRE_BACK_WALL_STRIP"/></Transform>
+
+    <Transform translation="16.25 22.4 2.85">
+        <Shape>
+            <Appearance>
+                <Material diffuseColor="0.78 0.77 0.73"/>
+            </Appearance>
+            <Box size="3.3 44.8 0.1"/>
+        </Shape>
+    </Transform>
+
+    <Transform translation="16.25 22.4 -2.85">
+        <Shape>
+            <Appearance>
+                <Material diffuseColor="0.78 0.77 0.73"/>
+            </Appearance>
+            <Box size="3.3 44.8 0.1"/>
+        </Shape>
+    </Transform>
+
+</Scene>
+</X3D>

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<X3D profile="Immersive" version="3.3"
+     xmlns="http://www.web3d.org/specifications/x3d-namespace">
+
+<!-- Składy po obu stronach holu (hol: z -2.9 .. 2.9). Współrzędne budynku: y = 0 to podłoga parteru -->
+
+<Scene>
+
+    <Switch whichChoice="-1">
+
+    <!-- ====================================== -->
+    <!-- MODUŁY SKŁADÓW -->
+    <!-- ====================================== -->
+
+    <!-- Skład A (łazienka po lewej), szer. 5.892 m (rozstaw 2 okien).
+         x = 0 to oś ściany między składami, z jak w budynku, y = 0 to podłoga.
+         Ściana od holu z: 2.9 .. 3.1, pas łazienka/przedpokój/aneks z: 3.1 .. 4.9,
+         ściana pokoi z: 4.9 .. 5.0, pokoje z: 5.0 .. 9.5. Drzwi: otwory 0.9 x 2.1 m -->
+    <Group DEF="UNIT_A">
+
+        <!-- Ściana między pokojem 1 i 2 - na ciemnym pasku między oknami -->
+        <Transform translation="2.946 1.3 7.25">
+            <Shape DEF="UNIT_ROOM_WALL">
+                <Appearance DEF="INTERIOR_WALL_APPEARANCE">
+                    <Material diffuseColor="0.92 0.91 0.88"/>
+                </Appearance>
+                <Box size="0.1 2.6 4.5"/>
+            </Shape>
+        </Transform>
+
+        <!-- Ściana pokoi: drzwi do pokoju 1 (x: 1.3 .. 2.2) i pokoju 2 (x: 3.65 .. 4.55) -->
+        <Transform translation="0.7 1.3 4.95">
+            <Shape DEF="UNIT_PART_WALL_1">
+                <Appearance USE="INTERIOR_WALL_APPEARANCE"/>
+                <Box size="1.2 2.6 0.1"/>
+            </Shape>
+        </Transform>
+        <Transform translation="2.925 1.3 4.95">
+            <Shape DEF="UNIT_PART_WALL_2">
+                <Appearance USE="INTERIOR_WALL_APPEARANCE"/>
+                <Box size="1.45 2.6 0.1"/>
+            </Shape>
+        </Transform>
+        <Transform translation="5.171 1.3 4.95">
+            <Shape DEF="UNIT_PART_WALL_3">
+                <Appearance USE="INTERIOR_WALL_APPEARANCE"/>
+                <Box size="1.242 2.6 0.1"/>
+            </Shape>
+        </Transform>
+        <Transform translation="1.75 2.35 4.95">
+            <Shape DEF="UNIT_DOOR_LINTEL">
+                <Appearance USE="INTERIOR_WALL_APPEARANCE"/>
+                <Box size="0.9 0.5 0.1"/>
+            </Shape>
+        </Transform>
+        <Transform translation="4.1 2.35 4.95"><Shape USE="UNIT_DOOR_LINTEL"/></Transform>
+
+        <!-- Łazienka (x: 0.1 .. 1.2): ściana z drzwiami od strony pokoi (z: 4.0 .. 4.9) -->
+        <Transform translation="1.25 1.3 3.55">
+            <Shape DEF="UNIT_BATH_WALL">
+                <Appearance USE="INTERIOR_WALL_APPEARANCE"/>
+                <Box size="0.1 2.6 0.9"/>
+            </Shape>
+        </Transform>
+        <Transform translation="1.25 2.35 4.45">
+            <Shape DEF="UNIT_BATH_LINTEL">
+                <Appearance USE="INTERIOR_WALL_APPEARANCE"/>
+                <Box size="0.1 0.5 0.9"/>
+            </Shape>
+        </Transform>
+
+        <!-- Ściana od holu z drzwiami wejściowymi (x: 1.35 .. 2.25) -->
+        <Transform translation="0.675 1.3 3.0">
+            <Shape DEF="UNIT_HALL_WALL_SHORT">
+                <Appearance USE="INTERIOR_WALL_APPEARANCE"/>
+                <Box size="1.35 2.6 0.2"/>
+            </Shape>
+        </Transform>
+        <Transform translation="4.071 1.3 3.0">
+            <Shape DEF="UNIT_HALL_WALL_LONG">
+                <Appearance USE="INTERIOR_WALL_APPEARANCE"/>
+                <Box size="3.642 2.6 0.2"/>
+            </Shape>
+        </Transform>
+        <Transform translation="1.8 2.35 3.0">
+            <Shape DEF="UNIT_HALL_LINTEL">
+                <Appearance USE="INTERIOR_WALL_APPEARANCE"/>
+                <Box size="0.9 0.5 0.2"/>
+            </Shape>
+        </Transform>
+    </Group>
+
+    <!-- Skład B - lustrzane odbicie A (łazienka po prawej): x -> 5.892 - x -->
+    <Group DEF="UNIT_B">
+        <Transform translation="2.946 1.3 7.25"><Shape USE="UNIT_ROOM_WALL"/></Transform>
+
+        <Transform translation="5.192 1.3 4.95"><Shape USE="UNIT_PART_WALL_1"/></Transform>
+        <Transform translation="2.967 1.3 4.95"><Shape USE="UNIT_PART_WALL_2"/></Transform>
+        <Transform translation="0.721 1.3 4.95"><Shape USE="UNIT_PART_WALL_3"/></Transform>
+        <Transform translation="4.142 2.35 4.95"><Shape USE="UNIT_DOOR_LINTEL"/></Transform>
+        <Transform translation="1.792 2.35 4.95"><Shape USE="UNIT_DOOR_LINTEL"/></Transform>
+
+        <Transform translation="4.642 1.3 3.55"><Shape USE="UNIT_BATH_WALL"/></Transform>
+        <Transform translation="4.642 2.35 4.45"><Shape USE="UNIT_BATH_LINTEL"/></Transform>
+
+        <Transform translation="5.217 1.3 3.0"><Shape USE="UNIT_HALL_WALL_SHORT"/></Transform>
+        <Transform translation="1.821 1.3 3.0"><Shape USE="UNIT_HALL_WALL_LONG"/></Transform>
+        <Transform translation="4.092 2.35 3.0"><Shape USE="UNIT_HALL_LINTEL"/></Transform>
+    </Group>
+
+    <!-- Jedna strona holu (z: 2.9 .. 9.5): 6 składów B A B A B A - łazienki sąsiadów stykają się,
+         aneksy też. Skrajne składy rozciągnięte do 6.115 m (scale 1.0378), łazienką do środka,
+         żeby drzwi wejściowe wypadły w holu, a nie naprzeciw wnęki -->
+    <Group DEF="FLOOR_UNITS_SIDE">
+        <Transform translation="-17.9 0 0" scale="1.0378 1 1"><Group USE="UNIT_B"/></Transform>
+        <Transform translation="-11.785 0 0"><Group USE="UNIT_A"/></Transform>
+        <Transform translation="-5.892 0 0"><Group USE="UNIT_B"/></Transform>
+        <Transform translation="0 0 0"><Group USE="UNIT_A"/></Transform>
+        <Transform translation="5.892 0 0"><Group USE="UNIT_B"/></Transform>
+        <Transform translation="11.785 0 0" scale="1.0378 1 1"><Group USE="UNIT_A"/></Transform>
+
+        <!-- Ściany między składami - na filarach w parach okien -->
+        <Transform translation="-11.785 1.3 6.3">
+            <Shape DEF="UNIT_SEPARATION_WALL">
+                <Appearance USE="INTERIOR_WALL_APPEARANCE"/>
+                <Box size="0.2 2.6 6.4"/>
+            </Shape>
+        </Transform>
+        <Transform translation="-5.892 1.3 6.3"><Shape USE="UNIT_SEPARATION_WALL"/></Transform>
+        <Transform translation="0 1.3 6.3"><Shape USE="UNIT_SEPARATION_WALL"/></Transform>
+        <Transform translation="5.892 1.3 6.3"><Shape USE="UNIT_SEPARATION_WALL"/></Transform>
+        <Transform translation="11.785 1.3 6.3"><Shape USE="UNIT_SEPARATION_WALL"/></Transform>
+    </Group>
+
+    <!-- Obie strony holu: druga strona to pierwsza obrócona o 180° wokół Y -->
+    <Group DEF="FLOOR_UNITS">
+        <Group USE="FLOOR_UNITS_SIDE"/>
+        <Transform rotation="0 1 0 3.14159"><Group USE="FLOOR_UNITS_SIDE"/></Transform>
+    </Group>
+
+    </Switch>
+
+
+    <!-- ====================================== -->
+    <!-- SKŁADY - PIĘTRA 2-16 (podłoga = wierzch stropu: 2.8 * k + 0.4) -->
+    <!-- ====================================== -->
+
+    <Transform translation="0 3.2 0"><Group USE="FLOOR_UNITS"/></Transform>
+    <Transform translation="0 6.0 0"><Group USE="FLOOR_UNITS"/></Transform>
+    <Transform translation="0 8.8 0"><Group USE="FLOOR_UNITS"/></Transform>
+    <Transform translation="0 11.6 0"><Group USE="FLOOR_UNITS"/></Transform>
+    <Transform translation="0 14.4 0"><Group USE="FLOOR_UNITS"/></Transform>
+    <Transform translation="0 17.2 0"><Group USE="FLOOR_UNITS"/></Transform>
+    <Transform translation="0 20.0 0"><Group USE="FLOOR_UNITS"/></Transform>
+    <Transform translation="0 22.8 0"><Group USE="FLOOR_UNITS"/></Transform>
+    <Transform translation="0 25.6 0"><Group USE="FLOOR_UNITS"/></Transform>
+    <Transform translation="0 28.4 0"><Group USE="FLOOR_UNITS"/></Transform>
+    <Transform translation="0 31.2 0"><Group USE="FLOOR_UNITS"/></Transform>
+    <Transform translation="0 34.0 0"><Group USE="FLOOR_UNITS"/></Transform>
+    <Transform translation="0 36.8 0"><Group USE="FLOOR_UNITS"/></Transform>
+    <Transform translation="0 39.6 0"><Group USE="FLOOR_UNITS"/></Transform>
+    <Transform translation="0 42.4 0"><Group USE="FLOOR_UNITS"/></Transform>
+
+</Scene>
+</X3D>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<X3D profile="Immersive" version="3.3"
+     xmlns="http://www.web3d.org/specifications/x3d-namespace">
+
+<!-- Fundament z oknami piwnicznymi. Współrzędne budynku:
+     y = 0 to wierzch fundamentu (podłoga parteru), teren na y = -0.6 -->
+
+<Scene>
+
+    <!-- Cofnięty o 0.1 m względem lica ścian.
+         Bez fundamentu we wnęce klatki ewakuacyjnej (x: 14.6 .. 18, z: -2.8 .. 2.8) -->
+    <Transform translation="-8.95 -0.3 0">
+        <Shape>
+            <Appearance DEF="FOUNDATION_APPEARANCE">
+                <Material diffuseColor="0.12 0.12 0.13"/>
+            </Appearance>
+            <Box size="17.9 0.6 19.8"/>
+        </Shape>
+    </Transform>
+
+    <Transform translation="16.25 -0.3 6.275">
+        <Shape>
+            <Appearance USE="FOUNDATION_APPEARANCE"/>
+            <Box size="3.3 0.6 6.95"/>
+        </Shape>
+    </Transform>
+
+    <Transform translation="16.25 -0.3 -6.275">
+        <Shape>
+            <Appearance USE="FOUNDATION_APPEARANCE"/>
+            <Box size="3.3 0.6 6.95"/>
+        </Shape>
+    </Transform>
+
+    <!-- Połowa od strony klatki: rdzeń cofnięty o 0.15 m (z = ±9.75), przed nim warstwa z oknami piwnicznymi -->
+    <Transform translation="7.3 -0.3 0">
+        <Shape>
+            <Appearance USE="FOUNDATION_APPEARANCE"/>
+            <Box size="14.6 0.6 19.5"/>
+        </Shape>
+    </Transform>
+
+    <!-- Okna piwniczne - 6 na każdej długiej ścianie, tylko w połowie od strony klatki (x: 0 .. 18).
+         Okna i odstępy tej samej szerokości: 18 / 13 = 1.385 m (7 odstępów + 6 okien) -->
+    <Transform translation="2.077 -0.3 9.75">
+        <Group DEF="BASEMENT_WINDOW">
+            <Transform translation="0 0 0.015">
+                <Shape>
+                    <Appearance>
+                        <Material diffuseColor="0.60 0.60 0.60"/>
+                    </Appearance>
+                    <Box size="1.385 0.3 0.03"/>
+                </Shape>
+            </Transform>
+
+            <Transform translation="0 0 0.03">
+                <Shape>
+                    <Appearance>
+                        <Material diffuseColor="0.12 0.15 0.17"
+                                  specularColor="0.5 0.5 0.5"
+                                  shininess="0.6"/>
+                    </Appearance>
+                    <Box size="1.265 0.18 0.02"/>
+                </Shape>
+            </Transform>
+        </Group>
+    </Transform>
+    <Transform translation="4.846 -0.3 9.75"><Group USE="BASEMENT_WINDOW"/></Transform>
+    <Transform translation="7.615 -0.3 9.75"><Group USE="BASEMENT_WINDOW"/></Transform>
+    <Transform translation="10.385 -0.3 9.75"><Group USE="BASEMENT_WINDOW"/></Transform>
+    <Transform translation="13.154 -0.3 9.75"><Group USE="BASEMENT_WINDOW"/></Transform>
+    <Transform translation="15.923 -0.3 9.75"><Group USE="BASEMENT_WINDOW"/></Transform>
+
+    <!-- Druga ściana: obrót o 180° wokół Y kieruje okno na zewnątrz (-Z) -->
+    <Transform translation="2.077 -0.3 -9.75" rotation="0 1 0 3.14159"><Group USE="BASEMENT_WINDOW"/></Transform>
+    <Transform translation="4.846 -0.3 -9.75" rotation="0 1 0 3.14159"><Group USE="BASEMENT_WINDOW"/></Transform>
+    <Transform translation="7.615 -0.3 -9.75" rotation="0 1 0 3.14159"><Group USE="BASEMENT_WINDOW"/></Transform>
+    <Transform translation="10.385 -0.3 -9.75" rotation="0 1 0 3.14159"><Group USE="BASEMENT_WINDOW"/></Transform>
+    <Transform translation="13.154 -0.3 -9.75" rotation="0 1 0 3.14159"><Group USE="BASEMENT_WINDOW"/></Transform>
+    <Transform translation="15.923 -0.3 -9.75" rotation="0 1 0 3.14159"><Group USE="BASEMENT_WINDOW"/></Transform>
+
+    <!-- Warstwa zewnętrzna fundamentu z otworami (gr. 0.15 m, z: 9.75 .. 9.9) -
+         pasy pod i nad oknami oraz filary w odstępach między oknami -->
+    <Transform translation="0 0 9.825">
+        <Group DEF="BASEMENT_SKIN">
+            <Transform translation="8.95 -0.525 0">
+                <Shape DEF="BASEMENT_SKIN_STRIP">
+                    <Appearance USE="FOUNDATION_APPEARANCE"/>
+                    <Box size="17.9 0.15 0.15"/>
+                </Shape>
+            </Transform>
+            <Transform translation="8.95 -0.075 0"><Shape USE="BASEMENT_SKIN_STRIP"/></Transform>
+
+            <Transform translation="0.692 -0.3 0">
+                <Shape DEF="BASEMENT_SKIN_PIER">
+                    <Appearance USE="FOUNDATION_APPEARANCE"/>
+                    <Box size="1.385 0.3 0.15"/>
+                </Shape>
+            </Transform>
+            <Transform translation="3.462 -0.3 0"><Shape USE="BASEMENT_SKIN_PIER"/></Transform>
+            <Transform translation="6.231 -0.3 0"><Shape USE="BASEMENT_SKIN_PIER"/></Transform>
+            <Transform translation="9.0 -0.3 0"><Shape USE="BASEMENT_SKIN_PIER"/></Transform>
+            <Transform translation="11.769 -0.3 0"><Shape USE="BASEMENT_SKIN_PIER"/></Transform>
+            <Transform translation="14.538 -0.3 0"><Shape USE="BASEMENT_SKIN_PIER"/></Transform>
+
+            <!-- Ostatni filar do końca fundamentu (x = 17.9) -->
+            <Transform translation="17.258 -0.3 0">
+                <Shape>
+                    <Appearance USE="FOUNDATION_APPEARANCE"/>
+                    <Box size="1.285 0.3 0.15"/>
+                </Shape>
+            </Transform>
+        </Group>
+    </Transform>
+    <Transform translation="0 0 -9.825"><Group USE="BASEMENT_SKIN"/></Transform>
+
+</Scene>
+</X3D>

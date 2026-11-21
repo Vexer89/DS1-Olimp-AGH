@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<X3D profile="Immersive" version="3.3"
+     xmlns="http://www.web3d.org/specifications/x3d-namespace">
+
+<!-- Długie elewacje z oknami (ściana gr. 0.5 m, lico z = ±10).
+     Współrzędne budynku: y = 0 to podłoga parteru -->
+
+<Scene>
+
+    <!-- Switch z whichChoice="-1" nic nie rysuje - moduły są tu tylko
+         zdefiniowane (DEF), widoczne są wyłącznie ich kopie (USE) -->
+    <Switch whichChoice="-1">
+
+    <!-- ====================================== -->
+    <!-- MODUŁ OKNA -->
+    <!-- ====================================== -->
+
+    <!-- Otwór 2.3 x 1.5 m. z = 0 to lico ściany - okno jest cofnięte w głąb:
+         rama i słupki od -0.38 do -0.30, szyba na -0.34 -->
+    <Group DEF="WINDOW_UNIT">
+
+        <Transform translation="0 0 -0.34">
+            <Shape>
+                <Appearance>
+                    <Material diffuseColor="0.35 0.49 0.55"
+                              specularColor="0.3 0.3 0.3"
+                              shininess="0.3"
+                              transparency="0.6"/>
+                </Appearance>
+                <Box size="2.16 1.36 0.02"/>
+            </Shape>
+        </Transform>
+
+        <Transform translation="0 0.715 -0.34">
+            <Shape DEF="WINDOW_FRAME_H">
+                <Appearance DEF="WINDOW_FRAME_APPEARANCE">
+                    <Material diffuseColor="0.92 0.91 0.87"/>
+                </Appearance>
+                <Box size="2.3 0.07 0.08"/>
+            </Shape>
+        </Transform>
+        <Transform translation="0 -0.715 -0.34"><Shape USE="WINDOW_FRAME_H"/></Transform>
+
+        <Transform translation="-1.115 0 -0.34">
+            <Shape DEF="WINDOW_FRAME_V">
+                <Appearance USE="WINDOW_FRAME_APPEARANCE"/>
+                <Box size="0.07 1.5 0.08"/>
+            </Shape>
+        </Transform>
+        <Transform translation="1.115 0 -0.34"><Shape USE="WINDOW_FRAME_V"/></Transform>
+
+        <!-- 3 szyby po 0.673 m: (2.16 - 2 * 0.07) / 3 -->
+        <Transform translation="-0.372 0 -0.34">
+            <Shape DEF="WINDOW_MULLION">
+                <Appearance>
+                    <Material diffuseColor="0.85 0.87 0.85"/>
+                </Appearance>
+                <Box size="0.07 1.36 0.08"/>
+            </Shape>
+        </Transform>
+        <Transform translation="0.372 0 -0.34"><Shape USE="WINDOW_MULLION"/></Transform>
+
+    </Group>
+
+
+    <!-- ====================================== -->
+    <!-- OKNA W PARACH -->
+    <!-- ====================================== -->
+
+    <!-- Szyba od strony sąsiedniego okna szklana tylko u góry (ok. 2/5 wysokości).
+         Dół otworu od słupka do krawędzi wypełniony równo z licem ściany -->
+    <Group DEF="SHORT_PANE_FILL">
+        <Transform translation="0 -0.325 -0.19">
+            <Shape>
+                <Appearance>
+                    <Material diffuseColor="0.78 0.77 0.73"/>
+                </Appearance>
+                <Box size="0.743 0.85 0.38"/>
+            </Shape>
+        </Transform>
+
+        <Transform translation="0 0.135 -0.34">
+            <Shape>
+                <Appearance>
+                    <Material diffuseColor="0.85 0.87 0.85"/>
+                </Appearance>
+                <Box size="0.743 0.07 0.08"/>
+            </Shape>
+        </Transform>
+    </Group>
+
+    <!-- Lewe okno w parze - skrócona prawa szyba -->
+    <Group DEF="WINDOW_UNIT_PAIR_LEFT">
+        <Group USE="WINDOW_UNIT"/>
+        <Transform translation="0.7785 0 0"><Group USE="SHORT_PANE_FILL"/></Transform>
+    </Group>
+
+    <!-- Prawe okno w parze - skrócona lewa szyba -->
+    <Group DEF="WINDOW_UNIT_PAIR_RIGHT">
+        <Group USE="WINDOW_UNIT"/>
+        <Transform translation="-0.7785 0 0"><Group USE="SHORT_PANE_FILL"/></Transform>
+    </Group>
+
+
+    <!-- ====================================== -->
+    <!-- MODUŁ KONDYGNACJI -->
+    <!-- ====================================== -->
+
+    <Group DEF="FLOOR_MODULE">
+        <!-- Część wspólna z parterem (FLOOR_MODULE_GROUND) -->
+        <Group DEF="FACADE_COMMON">
+        <!-- Ściana gr. 0.5 m (z: 9.5 .. 10.0). Lokalnie y: -0.1 .. 2.7 = jedna kondygnacja,
+             otwory okienne y: 1.0 .. 2.5 -->
+        <Transform translation="0 0.45 9.75">
+            <Shape>
+                <Appearance DEF="FACADE_WALL_APPEARANCE">
+                    <Material diffuseColor="0.78 0.77 0.73"/>
+                </Appearance>
+                <Box size="36 1.1 0.5"/>
+            </Shape>
+        </Transform>
+
+        <Transform translation="0 2.6 9.75">
+            <Shape>
+                <Appearance USE="FACADE_WALL_APPEARANCE"/>
+                <Box size="36 0.2 0.5"/>
+            </Shape>
+        </Transform>
+
+        <!-- 13 filarów między otworami - w środkach równych odstępów 0.646 m.
+             Skrajne podzielone na pół: przy narożniku ściana w licu, przy oknie ciemny pasek (niżej) -->
+        <Transform translation="-17.839 1.75 9.75">
+            <Shape DEF="FACADE_PIER_EDGE">
+                <Appearance USE="FACADE_WALL_APPEARANCE"/>
+                <Box size="0.325 1.5 0.5"/>
+            </Shape>
+        </Transform>
+        <Transform translation="17.839 1.75 9.75"><Shape USE="FACADE_PIER_EDGE"/></Transform>
+
+        <!-- Między parami (od strony wysokich szyb): ciemne, cofnięte 15 cm - o połowę mniej niż okna (z: 9.5 .. 9.85) -->
+        <Transform translation="-14.731 1.75 9.675">
+            <Shape DEF="FACADE_PIER_DARK">
+                <Appearance DEF="FACADE_DARK_APPEARANCE">
+                    <Material diffuseColor="0.12 0.12 0.13"/>
+                </Appearance>
+                <Box size="0.648 1.5 0.35"/>
+            </Shape>
+        </Transform>
+        <Transform translation="-8.839 1.75 9.675"><Shape USE="FACADE_PIER_DARK"/></Transform>
+        <Transform translation="-2.946 1.75 9.675"><Shape USE="FACADE_PIER_DARK"/></Transform>
+        <Transform translation="2.946 1.75 9.675"><Shape USE="FACADE_PIER_DARK"/></Transform>
+        <Transform translation="8.839 1.75 9.675"><Shape USE="FACADE_PIER_DARK"/></Transform>
+        <Transform translation="14.731 1.75 9.675"><Shape USE="FACADE_PIER_DARK"/></Transform>
+
+        <!-- Przy skrajnych oknach: o połowę węższe -->
+        <Transform translation="-17.515 1.75 9.675">
+            <Shape DEF="FACADE_PIER_DARK_EDGE">
+                <Appearance USE="FACADE_DARK_APPEARANCE"/>
+                <Box size="0.325 1.5 0.35"/>
+            </Shape>
+        </Transform>
+        <Transform translation="17.515 1.75 9.675"><Shape USE="FACADE_PIER_DARK_EDGE"/></Transform>
+        </Group>
+
+        <!-- W parach: dół w licu (razem z wypełnieniem skróconych szyb, y: 1.0 .. 1.85),
+             góra między małymi szybami ciemna i cofnięta (y: 1.85 .. 2.5) -->
+        <Transform translation="-11.785 1.425 9.75">
+            <Shape DEF="FACADE_PIER_PAIR_LOW">
+                <Appearance USE="FACADE_WALL_APPEARANCE"/>
+                <Box size="0.648 0.85 0.5"/>
+            </Shape>
+        </Transform>
+        <Transform translation="-5.892 1.425 9.75"><Shape USE="FACADE_PIER_PAIR_LOW"/></Transform>
+        <Transform translation="0 1.425 9.75"><Shape USE="FACADE_PIER_PAIR_LOW"/></Transform>
+        <Transform translation="5.892 1.425 9.75"><Shape USE="FACADE_PIER_PAIR_LOW"/></Transform>
+        <Transform translation="11.785 1.425 9.75"><Shape USE="FACADE_PIER_PAIR_LOW"/></Transform>
+
+        <Transform translation="-11.785 2.175 9.675">
+            <Shape DEF="FACADE_PIER_PAIR_HIGH">
+                <Appearance USE="FACADE_DARK_APPEARANCE"/>
+                <Box size="0.648 0.65 0.35"/>
+            </Shape>
+        </Transform>
+        <Transform translation="-5.892 2.175 9.675"><Shape USE="FACADE_PIER_PAIR_HIGH"/></Transform>
+        <Transform translation="0 2.175 9.675"><Shape USE="FACADE_PIER_PAIR_HIGH"/></Transform>
+        <Transform translation="5.892 2.175 9.675"><Shape USE="FACADE_PIER_PAIR_HIGH"/></Transform>
+        <Transform translation="11.785 2.175 9.675"><Shape USE="FACADE_PIER_PAIR_HIGH"/></Transform>
+
+        <!-- 12 okien (otwór 2.3 m) i 13 równych odstępów: (36 - 12 * 2.3) / 13 = 0.646 m,
+             rozstaw środków 2.946 m. z = 10.0 to lico ściany -->
+        <Transform translation="-16.204 1.75 10"><Group USE="WINDOW_UNIT"/></Transform>
+        <Transform translation="-13.258 1.75 10"><Group USE="WINDOW_UNIT_PAIR_LEFT"/></Transform>
+        <Transform translation="-10.312 1.75 10"><Group USE="WINDOW_UNIT_PAIR_RIGHT"/></Transform>
+        <Transform translation="-7.365 1.75 10"><Group USE="WINDOW_UNIT_PAIR_LEFT"/></Transform>
+        <Transform translation="-4.419 1.75 10"><Group USE="WINDOW_UNIT_PAIR_RIGHT"/></Transform>
+        <Transform translation="-1.473 1.75 10"><Group USE="WINDOW_UNIT_PAIR_LEFT"/></Transform>
+        <Transform translation="1.473 1.75 10"><Group USE="WINDOW_UNIT_PAIR_RIGHT"/></Transform>
+        <Transform translation="4.419 1.75 10"><Group USE="WINDOW_UNIT_PAIR_LEFT"/></Transform>
+        <Transform translation="7.365 1.75 10"><Group USE="WINDOW_UNIT_PAIR_RIGHT"/></Transform>
+        <Transform translation="10.312 1.75 10"><Group USE="WINDOW_UNIT_PAIR_LEFT"/></Transform>
+        <Transform translation="13.258 1.75 10"><Group USE="WINDOW_UNIT_PAIR_RIGHT"/></Transform>
+        <Transform translation="16.204 1.75 10"><Group USE="WINDOW_UNIT"/></Transform>
+
+    </Group>
+
+
+    <!-- Parter: wszystkie okna pełne (bez skróconych szyb),
+         więc filary w miejscu par też ciemne i cofnięte na całą wysokość -->
+    <Group DEF="FLOOR_MODULE_GROUND">
+        <Group USE="FACADE_COMMON"/>
+
+        <Transform translation="-11.785 1.75 9.675"><Shape USE="FACADE_PIER_DARK"/></Transform>
+        <Transform translation="-5.892 1.75 9.675"><Shape USE="FACADE_PIER_DARK"/></Transform>
+        <Transform translation="0 1.75 9.675"><Shape USE="FACADE_PIER_DARK"/></Transform>
+        <Transform translation="5.892 1.75 9.675"><Shape USE="FACADE_PIER_DARK"/></Transform>
+        <Transform translation="11.785 1.75 9.675"><Shape USE="FACADE_PIER_DARK"/></Transform>
+
+        <Transform translation="-16.204 1.75 10"><Group USE="WINDOW_UNIT"/></Transform>
+        <Transform translation="-13.258 1.75 10"><Group USE="WINDOW_UNIT"/></Transform>
+        <Transform translation="-10.312 1.75 10"><Group USE="WINDOW_UNIT"/></Transform>
+        <Transform translation="-7.365 1.75 10"><Group USE="WINDOW_UNIT"/></Transform>
+        <Transform translation="-4.419 1.75 10"><Group USE="WINDOW_UNIT"/></Transform>
+        <Transform translation="-1.473 1.75 10"><Group USE="WINDOW_UNIT"/></Transform>
+        <Transform translation="1.473 1.75 10"><Group USE="WINDOW_UNIT"/></Transform>
+        <Transform translation="4.419 1.75 10"><Group USE="WINDOW_UNIT"/></Transform>
+        <Transform translation="7.365 1.75 10"><Group USE="WINDOW_UNIT"/></Transform>
+        <Transform translation="10.312 1.75 10"><Group USE="WINDOW_UNIT"/></Transform>
+        <Transform translation="13.258 1.75 10"><Group USE="WINDOW_UNIT"/></Transform>
+        <Transform translation="16.204 1.75 10"><Group USE="WINDOW_UNIT"/></Transform>
+    </Group>
+
+
+    <!-- ====================================== -->
+    <!-- JEDNA DŁUGA ELEWACJA - 16 KONDYGNACJI -->
+    <!-- ====================================== -->
+
+    <Group DEF="FACADE_SIDE">
+        <Transform translation="0 0.1 0"><Group USE="FLOOR_MODULE_GROUND"/></Transform>
+        <Transform translation="0 2.9 0"><Group USE="FLOOR_MODULE"/></Transform>
+        <Transform translation="0 5.7 0"><Group USE="FLOOR_MODULE"/></Transform>
+        <Transform translation="0 8.5 0"><Group USE="FLOOR_MODULE"/></Transform>
+        <Transform translation="0 11.3 0"><Group USE="FLOOR_MODULE"/></Transform>
+        <Transform translation="0 14.1 0"><Group USE="FLOOR_MODULE"/></Transform>
+        <Transform translation="0 16.9 0"><Group USE="FLOOR_MODULE"/></Transform>
+        <Transform translation="0 19.7 0"><Group USE="FLOOR_MODULE"/></Transform>
+        <Transform translation="0 22.5 0"><Group USE="FLOOR_MODULE"/></Transform>
+        <Transform translation="0 25.3 0"><Group USE="FLOOR_MODULE"/></Transform>
+        <Transform translation="0 28.1 0"><Group USE="FLOOR_MODULE"/></Transform>
+        <Transform translation="0 30.9 0"><Group USE="FLOOR_MODULE"/></Transform>
+        <Transform translation="0 33.7 0"><Group USE="FLOOR_MODULE"/></Transform>
+        <Transform translation="0 36.5 0"><Group USE="FLOOR_MODULE"/></Transform>
+        <Transform translation="0 39.3 0"><Group USE="FLOOR_MODULE"/></Transform>
+        <Transform translation="0 42.1 0"><Group USE="FLOOR_MODULE"/></Transform>
+    </Group>
+
+    </Switch>
+
+
+    <!-- ====================================== -->
+    <!-- OBIE DŁUGIE ELEWACJE -->
+    <!-- ====================================== -->
+
+    <Group USE="FACADE_SIDE"/>
+
+    <!-- Druga elewacja: obrót o 180° wokół Y -->
+    <Transform rotation="0 1 0 3.14159">
+        <Group USE="FACADE_SIDE"/>
+    </Transform>
+
+</Scene>
+</X3D>
