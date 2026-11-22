@@ -32,20 +32,48 @@
         </Group>
     </Transform>
 
-    <Transform translation="0 5.6 0"><Group USE="FLOOR_SLAB"/></Transform>
-    <Transform translation="0 8.4 0"><Group USE="FLOOR_SLAB"/></Transform>
-    <Transform translation="0 11.2 0"><Group USE="FLOOR_SLAB"/></Transform>
-    <Transform translation="0 14 0"><Group USE="FLOOR_SLAB"/></Transform>
-    <Transform translation="0 16.8 0"><Group USE="FLOOR_SLAB"/></Transform>
-    <Transform translation="0 19.6 0"><Group USE="FLOOR_SLAB"/></Transform>
-    <Transform translation="0 22.4 0"><Group USE="FLOOR_SLAB"/></Transform>
-    <Transform translation="0 25.2 0"><Group USE="FLOOR_SLAB"/></Transform>
-    <Transform translation="0 28 0"><Group USE="FLOOR_SLAB"/></Transform>
-    <Transform translation="0 30.8 0"><Group USE="FLOOR_SLAB"/></Transform>
-    <Transform translation="0 33.6 0"><Group USE="FLOOR_SLAB"/></Transform>
-    <Transform translation="0 36.4 0"><Group USE="FLOOR_SLAB"/></Transform>
-    <Transform translation="0 39.2 0"><Group USE="FLOOR_SLAB"/></Transform>
-    <Transform translation="0 42 0"><Group USE="FLOOR_SLAB"/></Transform>
+    <!-- Od piętra 2 w górę: otwór na biegi klatki schodowej (x: 4.05 .. 7.65, z: -1.55 .. 1.55),
+         środkowa płyta podzielona na 4 części wokół otworu -->
+    <Transform translation="0 5.6 0">
+        <Group DEF="FLOOR_SLAB_STAIR_HOLE">
+            <Transform translation="-5.125 0.3 0">
+                <Shape>
+                    <Appearance USE="FLOOR_SLAB_APPEARANCE"/>
+                    <Box size="18.35 0.2 19.0"/>
+                </Shape>
+            </Transform>
+            <Transform translation="10.975 0.3 0">
+                <Shape>
+                    <Appearance USE="FLOOR_SLAB_APPEARANCE"/>
+                    <Box size="6.65 0.2 19.0"/>
+                </Shape>
+            </Transform>
+            <Transform translation="5.85 0.3 5.525">
+                <Shape DEF="FLOOR_SLAB_STAIR_SIDE">
+                    <Appearance USE="FLOOR_SLAB_APPEARANCE"/>
+                    <Box size="3.6 0.2 7.95"/>
+                </Shape>
+            </Transform>
+            <Transform translation="5.85 0.3 -5.525"><Shape USE="FLOOR_SLAB_STAIR_SIDE"/></Transform>
 
+            <Transform translation="-16.1 0.3 6.2"><Shape USE="FLOOR_SLAB_SIDE"/></Transform>
+            <Transform translation="-16.1 0.3 -6.2"><Shape USE="FLOOR_SLAB_SIDE"/></Transform>
+            <Transform translation="16.1 0.3 6.2"><Shape USE="FLOOR_SLAB_SIDE"/></Transform>
+            <Transform translation="16.1 0.3 -6.2"><Shape USE="FLOOR_SLAB_SIDE"/></Transform>
+        </Group>
+    </Transform>
+    <Transform translation="0 8.4 0"><Group USE="FLOOR_SLAB_STAIR_HOLE"/></Transform>
+    <Transform translation="0 11.2 0"><Group USE="FLOOR_SLAB_STAIR_HOLE"/></Transform>
+    <Transform translation="0 14 0"><Group USE="FLOOR_SLAB_STAIR_HOLE"/></Transform>
+    <Transform translation="0 16.8 0"><Group USE="FLOOR_SLAB_STAIR_HOLE"/></Transform>
+    <Transform translation="0 19.6 0"><Group USE="FLOOR_SLAB_STAIR_HOLE"/></Transform>
+    <Transform translation="0 22.4 0"><Group USE="FLOOR_SLAB_STAIR_HOLE"/></Transform>
+    <Transform translation="0 25.2 0"><Group USE="FLOOR_SLAB_STAIR_HOLE"/></Transform>
+    <Transform translation="0 28 0"><Group USE="FLOOR_SLAB_STAIR_HOLE"/></Transform>
+    <Transform translation="0 30.8 0"><Group USE="FLOOR_SLAB_STAIR_HOLE"/></Transform>
+    <Transform translation="0 33.6 0"><Group USE="FLOOR_SLAB_STAIR_HOLE"/></Transform>
+    <Transform translation="0 36.4 0"><Group USE="FLOOR_SLAB_STAIR_HOLE"/></Transform>
+    <Transform translation="0 39.2 0"><Group USE="FLOOR_SLAB_STAIR_HOLE"/></Transform>
+    <Transform translation="0 42 0"><Group USE="FLOOR_SLAB_STAIR_HOLE"/></Transform>
 </Scene>
 </X3D>

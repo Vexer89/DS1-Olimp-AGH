@@ -163,6 +163,23 @@
         <Transform translation="15.9 -2.7 -1.2"><Shape USE="FIRE_STEP"/></Transform>
         <Transform translation="15.7 -2.9 -1.2"><Shape USE="FIRE_STEP"/></Transform>
 
+        <!-- Spód biegów jako płaska pochyła powierzchnia przez najniższe narożniki stopni,
+             dokładnie na szerokość i długość pochyłej części biegu -->
+        <Shape>
+            <Appearance DEF="FIRE_SOFFIT_APPEARANCE">
+                <Material diffuseColor="0.80 0.79 0.75"/>
+            </Appearance>
+            <IndexedFaceSet solid="false" coordIndex="0 1 2 3 -1">
+                <Coordinate point="15.4 -0.2 0.7, 16.8 -1.6 0.7, 16.8 -1.6 1.7, 15.4 -0.2 1.7"/>
+            </IndexedFaceSet>
+        </Shape>
+        <Shape>
+            <Appearance USE="FIRE_SOFFIT_APPEARANCE"/>
+            <IndexedFaceSet solid="false" coordIndex="0 1 2 3 -1">
+                <Coordinate point="17.2 -1.6 -1.7, 15.8 -3.0 -1.7, 15.8 -3.0 -0.7, 17.2 -1.6 -0.7"/>
+            </IndexedFaceSet>
+        </Shape>
+
         <!-- Murki biegów: równoległoboki z pionowymi końcami (x = 15.6 i 17.0),
              górą 0.6 m nad linią stopni, dołem 0.3 m pod nią -->
         <Transform translation="0 0 1.75">
@@ -170,10 +187,13 @@
                 <Appearance DEF="FIRE_PARAPET_APPEARANCE">
                     <Material diffuseColor="0.88 0.87 0.83"/>
                 </Appearance>
+                <!-- Pięciokąt: góra 0.6 m nad linią stopni, dół 0.1 m pod ich spodem,
+                     przy dolnym końcu dół ścięty na wysokości spodu płyty pośredniej (-1.6) -->
+                <!-- Górny koniec wydłużony o 0.1 m w głąb murka płyty (do x = 15.5) tym samym nachyleniem -->
                 <IndexedFaceSet solid="false"
-                    coordIndex="0 1 2 3 -1 4 5 6 7 -1 0 1 5 4 -1 1 2 6 5 -1 2 3 7 6 -1 3 0 4 7 -1">
-                    <Coordinate point="15.6 0.6 -0.05, 17.0 -0.8 -0.05, 17.0 -1.7 -0.05, 15.6 -0.3 -0.05,
-                                       15.6 0.6 0.05, 17.0 -0.8 0.05, 17.0 -1.7 0.05, 15.6 -0.3 0.05"/>
+                    coordIndex="0 1 2 3 4 -1 5 6 7 8 9 -1 0 1 6 5 -1 1 2 7 6 -1 2 3 8 7 -1 3 4 9 8 -1 4 0 5 9 -1">
+                    <Coordinate point="15.6 0.6 -0.05, 17.0 -0.8 -0.05, 17.0 -1.6 -0.05, 16.7 -1.6 -0.05, 15.3 -0.2 -0.05,
+                                       15.6 0.6 0.05, 17.0 -0.8 0.05, 17.0 -1.6 0.05, 16.7 -1.6 0.05, 15.3 -0.2 0.05"/>
                 </IndexedFaceSet>
             </Shape>
         </Transform>
@@ -181,10 +201,13 @@
         <Transform translation="0 0 -1.75">
             <Shape DEF="FLIGHT_PARAPET_IN">
                 <Appearance USE="FIRE_PARAPET_APPEARANCE"/>
+                <!-- Pięciokąt: góra 0.6 m nad linią stopni, dół 0.1 m pod ich spodem,
+                     przy dolnym końcu dół ścięty na wysokości spodu płyty piętra niżej (-3.0) -->
+                <!-- Górny koniec wydłużony o 0.1 m w głąb murka płyty pośredniej (do x = 17.1) tym samym nachyleniem -->
                 <IndexedFaceSet solid="false"
-                    coordIndex="0 1 2 3 -1 4 5 6 7 -1 0 1 5 4 -1 1 2 6 5 -1 2 3 7 6 -1 3 0 4 7 -1">
-                    <Coordinate point="17.0 -0.8 -0.05, 15.6 -2.2 -0.05, 15.6 -3.1 -0.05, 17.0 -1.7 -0.05,
-                                       17.0 -0.8 0.05, 15.6 -2.2 0.05, 15.6 -3.1 0.05, 17.0 -1.7 0.05"/>
+                    coordIndex="0 1 2 3 4 -1 5 6 7 8 9 -1 0 1 6 5 -1 1 2 7 6 -1 2 3 8 7 -1 3 4 9 8 -1 4 0 5 9 -1">
+                    <Coordinate point="17.0 -0.8 -0.05, 15.6 -2.2 -0.05, 15.6 -3.0 -0.05, 15.9 -3.0 -0.05, 17.3 -1.6 -0.05,
+                                       17.0 -0.8 0.05, 15.6 -2.2 0.05, 15.6 -3.0 0.05, 15.9 -3.0 0.05, 17.3 -1.6 0.05"/>
                 </IndexedFaceSet>
             </Shape>
         </Transform>

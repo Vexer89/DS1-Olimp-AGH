@@ -25,6 +25,7 @@
 
         <!-- Wnętrze -->
         <Inline url='"interior/units.x3d"'/>
+        <Inline url='"interior/hall.x3d"'/>
 
     </Transform>
 

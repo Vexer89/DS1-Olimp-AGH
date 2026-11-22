@@ -70,12 +70,12 @@
     <!-- Szyba od strony sąsiedniego okna szklana tylko u góry (ok. 2/5 wysokości).
          Dół otworu od słupka do krawędzi wypełniony równo z licem ściany -->
     <Group DEF="SHORT_PANE_FILL">
-        <Transform translation="0 -0.325 -0.19">
+        <Transform translation="0 -0.325 -0.25">
             <Shape>
                 <Appearance>
                     <Material diffuseColor="0.78 0.77 0.73"/>
                 </Appearance>
-                <Box size="0.743 0.85 0.38"/>
+                <Box size="0.743 0.85 0.5"/>
             </Shape>
         </Transform>
 
@@ -138,28 +138,50 @@
         <Transform translation="17.839 1.75 9.75"><Shape USE="FACADE_PIER_EDGE"/></Transform>
 
         <!-- Między parami (od strony wysokich szyb): ciemne, cofnięte 15 cm - o połowę mniej niż okna (z: 9.5 .. 9.85) -->
-        <Transform translation="-14.731 1.75 9.675">
+        <!-- Ciemna część tylko od ramy okna na zewnątrz (z: 9.62 .. 9.85),
+             od środka warstwa w kolorze ściany (z: 9.5 .. 9.62) - wnętrze jednolite -->
+        <Transform translation="-14.731 1.75 9.735">
             <Shape DEF="FACADE_PIER_DARK">
                 <Appearance DEF="FACADE_DARK_APPEARANCE">
                     <Material diffuseColor="0.12 0.12 0.13"/>
                 </Appearance>
-                <Box size="0.648 1.5 0.35"/>
+                <Box size="0.648 1.5 0.23"/>
             </Shape>
         </Transform>
-        <Transform translation="-8.839 1.75 9.675"><Shape USE="FACADE_PIER_DARK"/></Transform>
-        <Transform translation="-2.946 1.75 9.675"><Shape USE="FACADE_PIER_DARK"/></Transform>
-        <Transform translation="2.946 1.75 9.675"><Shape USE="FACADE_PIER_DARK"/></Transform>
-        <Transform translation="8.839 1.75 9.675"><Shape USE="FACADE_PIER_DARK"/></Transform>
-        <Transform translation="14.731 1.75 9.675"><Shape USE="FACADE_PIER_DARK"/></Transform>
+        <Transform translation="-8.839 1.75 9.735"><Shape USE="FACADE_PIER_DARK"/></Transform>
+        <Transform translation="-2.946 1.75 9.735"><Shape USE="FACADE_PIER_DARK"/></Transform>
+        <Transform translation="2.946 1.75 9.735"><Shape USE="FACADE_PIER_DARK"/></Transform>
+        <Transform translation="8.839 1.75 9.735"><Shape USE="FACADE_PIER_DARK"/></Transform>
+        <Transform translation="14.731 1.75 9.735"><Shape USE="FACADE_PIER_DARK"/></Transform>
+
+        <Transform translation="-14.731 1.75 9.56">
+            <Shape DEF="FACADE_PIER_INNER">
+                <Appearance USE="FACADE_WALL_APPEARANCE"/>
+                <Box size="0.648 1.5 0.12"/>
+            </Shape>
+        </Transform>
+        <Transform translation="-8.839 1.75 9.56"><Shape USE="FACADE_PIER_INNER"/></Transform>
+        <Transform translation="-2.946 1.75 9.56"><Shape USE="FACADE_PIER_INNER"/></Transform>
+        <Transform translation="2.946 1.75 9.56"><Shape USE="FACADE_PIER_INNER"/></Transform>
+        <Transform translation="8.839 1.75 9.56"><Shape USE="FACADE_PIER_INNER"/></Transform>
+        <Transform translation="14.731 1.75 9.56"><Shape USE="FACADE_PIER_INNER"/></Transform>
 
         <!-- Przy skrajnych oknach: o połowę węższe -->
-        <Transform translation="-17.515 1.75 9.675">
+        <Transform translation="-17.515 1.75 9.735">
             <Shape DEF="FACADE_PIER_DARK_EDGE">
                 <Appearance USE="FACADE_DARK_APPEARANCE"/>
-                <Box size="0.325 1.5 0.35"/>
+                <Box size="0.325 1.5 0.23"/>
             </Shape>
         </Transform>
-        <Transform translation="17.515 1.75 9.675"><Shape USE="FACADE_PIER_DARK_EDGE"/></Transform>
+        <Transform translation="17.515 1.75 9.735"><Shape USE="FACADE_PIER_DARK_EDGE"/></Transform>
+
+        <Transform translation="-17.515 1.75 9.56">
+            <Shape DEF="FACADE_PIER_INNER_EDGE">
+                <Appearance USE="FACADE_WALL_APPEARANCE"/>
+                <Box size="0.325 1.5 0.12"/>
+            </Shape>
+        </Transform>
+        <Transform translation="17.515 1.75 9.56"><Shape USE="FACADE_PIER_INNER_EDGE"/></Transform>
         </Group>
 
         <!-- W parach: dół w licu (razem z wypełnieniem skróconych szyb, y: 1.0 .. 1.85),
@@ -175,16 +197,27 @@
         <Transform translation="5.892 1.425 9.75"><Shape USE="FACADE_PIER_PAIR_LOW"/></Transform>
         <Transform translation="11.785 1.425 9.75"><Shape USE="FACADE_PIER_PAIR_LOW"/></Transform>
 
-        <Transform translation="-11.785 2.175 9.675">
+        <Transform translation="-11.785 2.175 9.735">
             <Shape DEF="FACADE_PIER_PAIR_HIGH">
                 <Appearance USE="FACADE_DARK_APPEARANCE"/>
-                <Box size="0.648 0.65 0.35"/>
+                <Box size="0.648 0.65 0.23"/>
             </Shape>
         </Transform>
-        <Transform translation="-5.892 2.175 9.675"><Shape USE="FACADE_PIER_PAIR_HIGH"/></Transform>
-        <Transform translation="0 2.175 9.675"><Shape USE="FACADE_PIER_PAIR_HIGH"/></Transform>
-        <Transform translation="5.892 2.175 9.675"><Shape USE="FACADE_PIER_PAIR_HIGH"/></Transform>
-        <Transform translation="11.785 2.175 9.675"><Shape USE="FACADE_PIER_PAIR_HIGH"/></Transform>
+        <Transform translation="-5.892 2.175 9.735"><Shape USE="FACADE_PIER_PAIR_HIGH"/></Transform>
+        <Transform translation="0 2.175 9.735"><Shape USE="FACADE_PIER_PAIR_HIGH"/></Transform>
+        <Transform translation="5.892 2.175 9.735"><Shape USE="FACADE_PIER_PAIR_HIGH"/></Transform>
+        <Transform translation="11.785 2.175 9.735"><Shape USE="FACADE_PIER_PAIR_HIGH"/></Transform>
+
+        <Transform translation="-11.785 2.175 9.56">
+            <Shape DEF="FACADE_PIER_PAIR_HIGH_INNER">
+                <Appearance USE="FACADE_WALL_APPEARANCE"/>
+                <Box size="0.648 0.65 0.12"/>
+            </Shape>
+        </Transform>
+        <Transform translation="-5.892 2.175 9.56"><Shape USE="FACADE_PIER_PAIR_HIGH_INNER"/></Transform>
+        <Transform translation="0 2.175 9.56"><Shape USE="FACADE_PIER_PAIR_HIGH_INNER"/></Transform>
+        <Transform translation="5.892 2.175 9.56"><Shape USE="FACADE_PIER_PAIR_HIGH_INNER"/></Transform>
+        <Transform translation="11.785 2.175 9.56"><Shape USE="FACADE_PIER_PAIR_HIGH_INNER"/></Transform>
 
         <!-- 12 okien (otwór 2.3 m) i 13 równych odstępów: (36 - 12 * 2.3) / 13 = 0.646 m,
              rozstaw środków 2.946 m. z = 10.0 to lico ściany -->
@@ -209,11 +242,17 @@
     <Group DEF="FLOOR_MODULE_GROUND">
         <Group USE="FACADE_COMMON"/>
 
-        <Transform translation="-11.785 1.75 9.675"><Shape USE="FACADE_PIER_DARK"/></Transform>
-        <Transform translation="-5.892 1.75 9.675"><Shape USE="FACADE_PIER_DARK"/></Transform>
-        <Transform translation="0 1.75 9.675"><Shape USE="FACADE_PIER_DARK"/></Transform>
-        <Transform translation="5.892 1.75 9.675"><Shape USE="FACADE_PIER_DARK"/></Transform>
-        <Transform translation="11.785 1.75 9.675"><Shape USE="FACADE_PIER_DARK"/></Transform>
+        <Transform translation="-11.785 1.75 9.735"><Shape USE="FACADE_PIER_DARK"/></Transform>
+        <Transform translation="-5.892 1.75 9.735"><Shape USE="FACADE_PIER_DARK"/></Transform>
+        <Transform translation="0 1.75 9.735"><Shape USE="FACADE_PIER_DARK"/></Transform>
+        <Transform translation="5.892 1.75 9.735"><Shape USE="FACADE_PIER_DARK"/></Transform>
+        <Transform translation="11.785 1.75 9.735"><Shape USE="FACADE_PIER_DARK"/></Transform>
+
+        <Transform translation="-11.785 1.75 9.56"><Shape USE="FACADE_PIER_INNER"/></Transform>
+        <Transform translation="-5.892 1.75 9.56"><Shape USE="FACADE_PIER_INNER"/></Transform>
+        <Transform translation="0 1.75 9.56"><Shape USE="FACADE_PIER_INNER"/></Transform>
+        <Transform translation="5.892 1.75 9.56"><Shape USE="FACADE_PIER_INNER"/></Transform>
+        <Transform translation="11.785 1.75 9.56"><Shape USE="FACADE_PIER_INNER"/></Transform>
 
         <Transform translation="-16.204 1.75 10"><Group USE="WINDOW_UNIT"/></Transform>
         <Transform translation="-13.258 1.75 10"><Group USE="WINDOW_UNIT"/></Transform>
