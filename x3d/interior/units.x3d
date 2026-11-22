@@ -88,6 +88,17 @@
                 <Box size="0.9 0.5 0.2"/>
             </Shape>
         </Transform>
+
+        <!-- Ściana przedpokoju naprzeciw łazienki (prawdopodobnie z pionem instalacyjnym):
+             od drzwi wejściowych (z = 3.1) do początku drzwi łazienki (z = 4.0),
+             5 cm odstępu od futryny jak przy łazience (x od 2.30), gruba do linii ściany
+             działowej pokoi (x = 2.896). Oddziela wejście od aneksu kuchennego -->
+        <Transform translation="2.598 1.3 3.55">
+            <Shape DEF="UNIT_ENTRY_WALL">
+                <Appearance USE="INTERIOR_WALL_APPEARANCE"/>
+                <Box size="0.596 2.6 0.9"/>
+            </Shape>
+        </Transform>
     </Group>
 
     <!-- Skład B - lustrzane odbicie A (łazienka po prawej): x -> 5.892 - x -->
@@ -106,6 +117,8 @@
         <Transform translation="5.217 1.3 3.0"><Shape USE="UNIT_HALL_WALL_SHORT"/></Transform>
         <Transform translation="1.821 1.3 3.0"><Shape USE="UNIT_HALL_WALL_LONG"/></Transform>
         <Transform translation="4.092 2.35 3.0"><Shape USE="UNIT_HALL_LINTEL"/></Transform>
+
+        <Transform translation="3.294 1.3 3.55"><Shape USE="UNIT_ENTRY_WALL"/></Transform>
     </Group>
 
     <!-- Jedna strona holu (z: 2.9 .. 9.5): 6 składów B A B A B A - łazienki sąsiadów stykają się,
