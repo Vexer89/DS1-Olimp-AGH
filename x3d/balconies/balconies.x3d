@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<X3D profile="Immersive" version="3.3"
+     xmlns="http://www.web3d.org/specifications/x3d-namespace">
+
+<!-- Balkony we wnęce nad wejściem (x: -18 .. -14.6, z: -2.8 .. 2.8).
+     Współrzędne budynku: y = 0 to podłoga parteru -->
+
+<Scene>
+
+    <Switch whichChoice="-1">
+
+    <!-- ====================================== -->
+    <!-- MODUŁ BALKONU WE WNĘCE -->
+    <!-- ====================================== -->
+
+    <!-- y = 0 to poziom podłogi kondygnacji -->
+    <Group DEF="BALCONY_MODULE">
+
+        <Transform translation="-15.35 -0.1 0">
+            <Shape>
+                <Appearance>
+                    <Material diffuseColor="0.91 0.90 0.86"/>
+                </Appearance>
+                <Box size="1.5 0.2 5.6"/>
+            </Shape>
+        </Transform>
+
+        <Transform translation="-16.04 0.3 0">
+            <Shape>
+                <Appearance>
+                    <Material diffuseColor="0.88 0.87 0.83"/>
+                </Appearance>
+                <Box size="0.12 0.6 5.6"/>
+            </Shape>
+        </Transform>
+
+        <!-- Kratka: kafel 8x8 px = jedno oczko (drut w 1. wierszu i 1. kolumnie).
+             Skala tekstury = wymiar / 0.03 m, czyli 5.6 -> 186.67, 2.0 -> 66.67 -->
+        <Transform translation="-16.04 1.6 0">
+            <Shape>
+                <Appearance>
+                    <Material DEF="MESH_MATERIAL"
+                              diffuseColor="0.35 0.35 0.35"
+                              transparency="0.05"/>
+                    <PixelTexture DEF="WIRE_MESH"
+                        image="8 8 4
+                        0x404040FF 0x404040FF 0x404040FF 0x404040FF 0x404040FF 0x404040FF 0x404040FF 0x404040FF
+                        0x404040FF 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000
+                        0x404040FF 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000
+                        0x404040FF 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000
+                        0x404040FF 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000
+                        0x404040FF 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000
+                        0x404040FF 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000
+                        0x404040FF 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000"/>
+                    <TextureTransform scale="186.67 66.67"/>
+                </Appearance>
+                <Box size="0.02 2.0 5.6"/>
+            </Shape>
+        </Transform>
+
+        <!-- Płaskowniki 3 cm dzielące kratkę -->
+        <Transform translation="-16.04 1.6 -2.785">
+            <Shape DEF="BALCONY_BAR_V">
+                <Appearance DEF="FLAT_BAR_APPEARANCE">
+                    <Material diffuseColor="0.30 0.30 0.30"
+                              specularColor="0.4 0.4 0.4"
+                              shininess="0.3"/>
+                </Appearance>
+                <Box size="0.03 2.0 0.03"/>
+            </Shape>
+        </Transform>
+        <Transform translation="-16.04 1.6 -1.4"><Shape USE="BALCONY_BAR_V"/></Transform>
+        <Transform translation="-16.04 1.6 0"><Shape USE="BALCONY_BAR_V"/></Transform>
+        <Transform translation="-16.04 1.6 1.4"><Shape USE="BALCONY_BAR_V"/></Transform>
+        <Transform translation="-16.04 1.6 2.785"><Shape USE="BALCONY_BAR_V"/></Transform>
+
+        <Transform translation="-16.04 0.615 0">
+            <Shape DEF="BALCONY_BAR_H">
+                <Appearance USE="FLAT_BAR_APPEARANCE"/>
+                <Box size="0.03 0.03 5.6"/>
+            </Shape>
+        </Transform>
+        <Transform translation="-16.04 2.585 0"><Shape USE="BALCONY_BAR_H"/></Transform>
+
+        <!-- Ściana balkonu: drzwi | murek 0.3 | 3 okna od 0.6 m | murek 0.3 | drzwi.
+             Rama to prostokąt za szybą, większy o 5 cm z każdej strony -->
+        <!-- Rama z 4 listew 5 cm - przez środek widać wnętrze -->
+        <Transform translation="-14.45 1.3 -2.3">
+            <Group DEF="BALCONY_DOOR_FRAME">
+                <Transform translation="0 1.275 0">
+                    <Shape DEF="BALCONY_DOOR_FRAME_H">
+                        <Appearance DEF="GLAZING_FRAME_APPEARANCE">
+                            <Material diffuseColor="0.92 0.91 0.87"/>
+                        </Appearance>
+                        <Box size="0.04 0.05 1.0"/>
+                    </Shape>
+                </Transform>
+                <Transform translation="0 -1.275 0"><Shape USE="BALCONY_DOOR_FRAME_H"/></Transform>
+
+                <Transform translation="0 0 0.475">
+                    <Shape DEF="BALCONY_DOOR_FRAME_V">
+                        <Appearance USE="GLAZING_FRAME_APPEARANCE"/>
+                        <Box size="0.04 2.6 0.05"/>
+                    </Shape>
+                </Transform>
+                <Transform translation="0 0 -0.475"><Shape USE="BALCONY_DOOR_FRAME_V"/></Transform>
+            </Group>
+        </Transform>
+        <Transform translation="-14.45 1.3 2.3"><Group USE="BALCONY_DOOR_FRAME"/></Transform>
+
+        <Transform translation="-14.48 1.3 -2.3">
+            <Shape DEF="BALCONY_DOOR_GLASS">
+                <Appearance DEF="GLASS_APPEARANCE">
+                    <Material diffuseColor="0.17 0.27 0.32"
+                              specularColor="0.5 0.5 0.5"
+                              shininess="0.6"
+                              transparency="0.6"/>
+                </Appearance>
+                <Box size="0.02 2.5 0.9"/>
+            </Shape>
+        </Transform>
+        <Transform translation="-14.48 1.3 2.3"><Shape USE="BALCONY_DOOR_GLASS"/></Transform>
+
+        <Transform translation="-14.495 1.3 -2.3">
+            <Shape DEF="BALCONY_DOOR_BAR">
+                <Appearance USE="GLAZING_FRAME_APPEARANCE"/>
+                <Box size="0.03 0.05 0.9"/>
+            </Shape>
+        </Transform>
+        <Transform translation="-14.495 1.3 2.3"><Shape USE="BALCONY_DOOR_BAR"/></Transform>
+
+        <Transform translation="-14.51 1.05 -1.9">
+            <Shape DEF="DOOR_HANDLE">
+                <Appearance USE="FLAT_BAR_APPEARANCE"/>
+                <Box size="0.04 0.25 0.03"/>
+            </Shape>
+        </Transform>
+        <Transform translation="-14.51 1.05 1.9"><Shape USE="DOOR_HANDLE"/></Transform>
+
+        <Transform translation="-14.45 1.6 -1">
+            <Group DEF="BALCONY_WINDOW_FRAME">
+                <Transform translation="0 0.975 0">
+                    <Shape DEF="BALCONY_WINDOW_FRAME_H">
+                        <Appearance USE="GLAZING_FRAME_APPEARANCE"/>
+                        <Box size="0.04 0.05 1.0"/>
+                    </Shape>
+                </Transform>
+                <Transform translation="0 -0.975 0"><Shape USE="BALCONY_WINDOW_FRAME_H"/></Transform>
+
+                <Transform translation="0 0 0.475">
+                    <Shape DEF="BALCONY_WINDOW_FRAME_V">
+                        <Appearance USE="GLAZING_FRAME_APPEARANCE"/>
+                        <Box size="0.04 2.0 0.05"/>
+                    </Shape>
+                </Transform>
+                <Transform translation="0 0 -0.475"><Shape USE="BALCONY_WINDOW_FRAME_V"/></Transform>
+            </Group>
+        </Transform>
+        <Transform translation="-14.45 1.6 0"><Group USE="BALCONY_WINDOW_FRAME"/></Transform>
+        <Transform translation="-14.45 1.6 1"><Group USE="BALCONY_WINDOW_FRAME"/></Transform>
+
+        <Transform translation="-14.48 1.6 -1">
+            <Shape DEF="BALCONY_WINDOW_GLASS">
+                <Appearance USE="GLASS_APPEARANCE"/>
+                <Box size="0.02 1.9 0.9"/>
+            </Shape>
+        </Transform>
+        <Transform translation="-14.48 1.6 0"><Shape USE="BALCONY_WINDOW_GLASS"/></Transform>
+        <Transform translation="-14.48 1.6 1"><Shape USE="BALCONY_WINDOW_GLASS"/></Transform>
+
+    </Group>
+
+    </Switch>
+
+
+    <!-- ====================================== -->
+    <!-- BALKONY NAD WEJŚCIEM - 15 SZTUK (kondygnacje 2-16) -->
+    <!-- ====================================== -->
+
+    <!-- Wierzch płyty = podłoga piętra: 2.8 * k + 0.4 -->
+    <Transform translation="0 3.2 0"><Group USE="BALCONY_MODULE"/></Transform>
+    <Transform translation="0 6.0 0"><Group USE="BALCONY_MODULE"/></Transform>
+    <Transform translation="0 8.8 0"><Group USE="BALCONY_MODULE"/></Transform>
+    <Transform translation="0 11.6 0"><Group USE="BALCONY_MODULE"/></Transform>
+    <Transform translation="0 14.4 0"><Group USE="BALCONY_MODULE"/></Transform>
+    <Transform translation="0 17.2 0"><Group USE="BALCONY_MODULE"/></Transform>
+    <Transform translation="0 20.0 0"><Group USE="BALCONY_MODULE"/></Transform>
+    <Transform translation="0 22.8 0"><Group USE="BALCONY_MODULE"/></Transform>
+    <Transform translation="0 25.6 0"><Group USE="BALCONY_MODULE"/></Transform>
+    <Transform translation="0 28.4 0"><Group USE="BALCONY_MODULE"/></Transform>
+    <Transform translation="0 31.2 0"><Group USE="BALCONY_MODULE"/></Transform>
+    <Transform translation="0 34.0 0"><Group USE="BALCONY_MODULE"/></Transform>
+    <Transform translation="0 36.8 0"><Group USE="BALCONY_MODULE"/></Transform>
+    <Transform translation="0 39.6 0"><Group USE="BALCONY_MODULE"/></Transform>
+    <Transform translation="0 42.4 0"><Group USE="BALCONY_MODULE"/></Transform>
+
+    <!-- Kratka "na suficie" ostatniego balkonu - Box obrócony o 90° wokół Z -->
+    <Transform translation="-15.35 45.0 0" rotation="0 0 1 1.5708">
+        <Shape>
+            <Appearance>
+                <Material USE="MESH_MATERIAL"/>
+                <PixelTexture USE="WIRE_MESH"/>
+                <TextureTransform scale="186.67 50"/>
+            </Appearance>
+            <Box size="0.02 1.5 5.6"/>
+        </Shape>
+    </Transform>
+
+</Scene>
+</X3D>

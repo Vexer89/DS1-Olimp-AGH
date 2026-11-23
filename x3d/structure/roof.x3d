@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<X3D profile="Immersive" version="3.3"
+     xmlns="http://www.web3d.org/specifications/x3d-namespace">
+
+<!-- Dach z attyką i nadbudówką. Współrzędne budynku: y = 0 to podłoga parteru.
+     Nad obiema wnękami dach jest wycięty -->
+
+<Scene>
+
+    <Transform translation="0 44.95 0">
+        <Shape>
+            <Appearance>
+                <Material diffuseColor="0.58 0.57 0.53"/>
+            </Appearance>
+            <Box size="29.2 0.35 20.5"/>
+        </Shape>
+    </Transform>
+
+    <Transform translation="16.425 44.95 6.525">
+        <Shape>
+            <Appearance>
+                <Material diffuseColor="0.58 0.57 0.53"/>
+            </Appearance>
+            <Box size="3.65 0.35 7.45"/>
+        </Shape>
+    </Transform>
+
+    <Transform translation="16.425 44.95 -6.525">
+        <Shape>
+            <Appearance>
+                <Material diffuseColor="0.58 0.57 0.53"/>
+            </Appearance>
+            <Box size="3.65 0.35 7.45"/>
+        </Shape>
+    </Transform>
+
+    <Transform translation="-16.425 44.95 6.525">
+        <Shape>
+            <Appearance>
+                <Material diffuseColor="0.58 0.57 0.53"/>
+            </Appearance>
+            <Box size="3.65 0.35 7.45"/>
+        </Shape>
+    </Transform>
+
+    <Transform translation="-16.425 44.95 -6.525">
+        <Shape>
+            <Appearance>
+                <Material diffuseColor="0.58 0.57 0.53"/>
+            </Appearance>
+            <Box size="3.65 0.35 7.45"/>
+        </Shape>
+    </Transform>
+
+    <!-- Wierzch płyty dachu: y = 45.125. Układ odczytany ze zdjęcia z góry,
+         wymiary nadbudówki i wysokości szacunkowe -->
+
+    <!-- Attyka 0.6 m x 0.3 m po obwodzie dachu i wokół wycięć nad wnękami -->
+    <Transform translation="0 45.425 10.1">
+        <Shape DEF="ROOF_ATTIC_LONG">
+            <Appearance DEF="ROOF_ATTIC_APPEARANCE">
+                <Material diffuseColor="0.88 0.87 0.84"/>
+            </Appearance>
+            <Box size="36.5 0.6 0.3"/>
+        </Shape>
+    </Transform>
+    <Transform translation="0 45.425 -10.1"><Shape USE="ROOF_ATTIC_LONG"/></Transform>
+
+    <!-- Koniec od strony klatki; obrót o 180° wokół Y daje koniec od strony wejścia -->
+    <Group DEF="ROOF_ATTIC_END">
+        <Transform translation="18.1 45.425 6.375">
+            <Shape DEF="ROOF_ATTIC_SHORT">
+                <Appearance USE="ROOF_ATTIC_APPEARANCE"/>
+                <Box size="0.3 0.6 7.15"/>
+            </Shape>
+        </Transform>
+        <Transform translation="18.1 45.425 -6.375"><Shape USE="ROOF_ATTIC_SHORT"/></Transform>
+
+        <Transform translation="16.275 45.425 2.95">
+            <Shape DEF="ROOF_ATTIC_RECESS_SIDE">
+                <Appearance USE="ROOF_ATTIC_APPEARANCE"/>
+                <Box size="3.35 0.6 0.3"/>
+            </Shape>
+        </Transform>
+        <Transform translation="16.275 45.425 -2.95"><Shape USE="ROOF_ATTIC_RECESS_SIDE"/></Transform>
+
+        <Transform translation="14.45 45.425 0">
+            <Shape>
+                <Appearance USE="ROOF_ATTIC_APPEARANCE"/>
+                <Box size="0.3 0.6 6.2"/>
+            </Shape>
+        </Transform>
+    </Group>
+
+    <Transform rotation="0 1 0 3.14159">
+        <Group USE="ROOF_ATTIC_END"/>
+    </Transform>
+
+    <!-- Nadbudówka: x -12.8 .. 11.6, z -4 .. 4, wysokość 3.33 m -->
+    <Transform translation="-0.6 46.79 0">
+        <Shape>
+            <Appearance>
+                <Material diffuseColor="0.78 0.77 0.73"/>
+            </Appearance>
+            <Box size="24.4 3.33 8.0"/>
+        </Shape>
+    </Transform>
+
+    <!-- Attyka nadbudówki 0.5 m (wierzch nadbudówki: y = 48.455) -->
+    <Transform translation="-0.6 48.705 3.85">
+        <Shape DEF="PENTHOUSE_ATTIC_LONG">
+            <Appearance USE="ROOF_ATTIC_APPEARANCE"/>
+            <Box size="24.4 0.5 0.3"/>
+        </Shape>
+    </Transform>
+    <Transform translation="-0.6 48.705 -3.85"><Shape USE="PENTHOUSE_ATTIC_LONG"/></Transform>
+
+    <Transform translation="-12.65 48.705 0">
+        <Shape DEF="PENTHOUSE_ATTIC_SHORT">
+            <Appearance USE="ROOF_ATTIC_APPEARANCE"/>
+            <Box size="0.3 0.5 7.4"/>
+        </Shape>
+    </Transform>
+    <Transform translation="11.45 48.705 0"><Shape USE="PENTHOUSE_ATTIC_SHORT"/></Transform>
+
+    <!-- Urządzenia na dachu nadbudówki -->
+    <Transform translation="-0.2 48.955 0.7">
+        <Shape>
+            <Appearance DEF="ROOF_UNIT_APPEARANCE">
+                <Material diffuseColor="0.70 0.70 0.70"
+                          specularColor="0.3 0.3 0.3"/>
+            </Appearance>
+            <Box size="1.5 1.0 1.2"/>
+        </Shape>
+    </Transform>
+
+    <Transform translation="4.2 48.855 1.0">
+        <Shape>
+            <Appearance USE="ROOF_UNIT_APPEARANCE"/>
+            <Box size="1.2 0.8 1.2"/>
+        </Shape>
+    </Transform>
+
+    <Transform translation="-7.7 48.755 -0.3">
+        <Shape>
+            <Appearance>
+                <Material diffuseColor="0.25 0.25 0.26"/>
+            </Appearance>
+            <Box size="0.8 0.6 0.8"/>
+        </Shape>
+    </Transform>
+
+    <!-- Świetlik -->
+    <Transform translation="0.8 48.605 -1.5">
+        <Shape>
+            <Appearance>
+                <Material diffuseColor="0.17 0.27 0.32"
+                          specularColor="0.5 0.5 0.5"
+                          shininess="0.6"/>
+            </Appearance>
+            <Box size="1.2 0.3 1.2"/>
+        </Shape>
+    </Transform>
+
+</Scene>
+</X3D>
